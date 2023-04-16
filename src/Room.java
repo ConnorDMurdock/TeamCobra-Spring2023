@@ -1,8 +1,9 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Room implements Serializable {
-    public int roomID;
+    public String roomID;
     public String roomName;
     public ArrayList<Monster> monstersList;
     public ArrayList<Item> itemsList;
@@ -13,7 +14,17 @@ public class Room implements Serializable {
     public String roomDescription;
     public boolean isCheckpoint;
 
-    public Room(int roomID, String roomName, ArrayList<Monster> monstersList, ArrayList<Item> itemsList, Puzzle roomPuzzle, String[] roomConnections, String[] directionText, String puzzleSolvedDirectionText, String roomDescription, boolean isCheckpoint) {
+
+
+    public void setItemsList(ArrayList<Item> itemsList) {
+        this.itemsList = itemsList;
+    }
+
+    public void setCheckpoint(boolean checkpoint) {
+        isCheckpoint = checkpoint;
+    }
+
+    public Room(String roomID, String roomName, ArrayList<Monster> monstersList, ArrayList<Item> itemsList, Puzzle roomPuzzle, String[] roomConnections, String[] directionText, String puzzleSolvedDirectionText, String roomDescription, boolean isCheckpoint) {
         this.roomID = roomID;
         this.roomName = roomName;
         this.monstersList = monstersList;
@@ -26,11 +37,11 @@ public class Room implements Serializable {
         this.isCheckpoint = isCheckpoint;
     }
 
-    public int getRoomID() {
+    public String getRoomID() {
         return roomID;
     }
 
-    public void setRoomID(int roomID) {
+    public void setRoomID(String roomID) {
         this.roomID = roomID;
     }
 
@@ -42,22 +53,26 @@ public class Room implements Serializable {
         this.roomName = roomName;
     }
 
-    public ArrayList<Monster> getMonstersList() {
-        return monstersList;
-    }
-
     public void setMonstersList(ArrayList<Monster> monstersList) {
         this.monstersList = monstersList;
+    }
+
+    public ArrayList<Monster> getMonstersList() {
+        return monstersList;
     }
 
     public ArrayList<Item> getItemsList() {
         return itemsList;
     }
-
-    public void setItemsList(ArrayList<Item> itemsList) {
-        this.itemsList = itemsList;
+    public void addItemtoRoom(Item item)
+    {
+        itemsList.add(item);
     }
 
+    public Item removeItemFromRoom(Item item){
+       itemsList.remove(item);
+       return item;
+    }
     public Puzzle getRoomPuzzle() {
         return roomPuzzle;
     }
@@ -102,10 +117,27 @@ public class Room implements Serializable {
         return isCheckpoint;
     }
 
-    public void setCheckpoint(boolean checkpoint) {
-        isCheckpoint = checkpoint;
-    }
 
+    public void scanRoom(){
+        ArrayList<String> rMonsterNames = new ArrayList<>();
+        for(Monster m:monstersList){
+            String tempM = m.getName();
+            rMonsterNames.add(tempM);
+
+
+        }
+        ArrayList<String> ritemNames = new ArrayList<>();
+        for(Item i:itemsList){
+            String tempI = i.getName();
+            ritemNames.add(tempI);
+
+
+        }
+
+        System.out.println("Monsters found in the room:" + rMonsterNames.toString()+
+                "\nItems found in the room "+ritemNames.toString()+
+                "\npuzzles found in the room "+ roomPuzzle.getType());
+    }
 
 
 }
