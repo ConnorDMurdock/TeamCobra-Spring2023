@@ -14,18 +14,18 @@ public class Entity
     //Name is the name of the entity
     protected String name;
 
-    //Current room ID is the numerical ID of the room this entity is currently inside
-    protected int currentRoomID;
+    //Current room ID is the Room object this entity currently resides in.
+    protected Room currentRoom;
 
     //Constructor
-    public Entity(int hitPoints, int damageDealt, String name, int currentRoomID) {
+    public Entity(int hitPoints, int damageDealt, String name, Room currentRoom) {
         this.hitPoints = hitPoints;
         this.damageDealt = damageDealt;
         this.name = name;
-        this.currentRoomID = currentRoomID;
+        this.currentRoom = currentRoom;
     }
 
-    //Returns the hit points of the entity
+    //Returns the hit points of this entity
     public int getHitPoints() {
         return hitPoints;
     }
@@ -35,9 +35,11 @@ public class Entity
         this.hitPoints = hitPoints;
     }
 
-    //Returns the amount of damage this entity will deal in combat
-    public int getDamageDealt() {
-        return damageDealt;
+    //Simulates attacking the given entity target in combat by making them take damage equal to damageDealt.
+    //Returns the amount of damage this entity dealt in combat for display
+    //Dodged is true if the enemy entity successfully dodged, and false if they did not
+    public int attack(Entity attackTarget, boolean dodged) {
+        return attackTarget.takeDamage(damageDealt, dodged);
     }
 
     //Sets the amount of damage this entity will deal in combat
@@ -52,7 +54,9 @@ public class Entity
 
     //Sets this entity's hit points to a number equal to hit points minus incoming damage. Simulates taking damage during combat.
     //If the entity has 100 hit points and takes 10 damage, this function will subtract 10 and make hit points equal 90
-    public void takeDamage(int damage) {
+    //returns the damage taken to display to the console.
+    public int takeDamage(int damage, boolean dodged) {
         this.hitPoints = hitPoints - damage;
+        return damage;
     }
 }
