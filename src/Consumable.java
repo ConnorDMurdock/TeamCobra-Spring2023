@@ -3,9 +3,9 @@ import java.io.Serializable;
 public class Consumable extends Item implements Serializable {
 
 
-    int potionHP;
+    private int potionHP;
 
-    int remainingHP;
+    private int remainingHP;
 
     public Consumable(String name, int itemID, int roomID, String description, int potionHP, int remainingHP) {
         super(name, itemID, roomID, description);
