@@ -12,8 +12,8 @@ public class Monster extends Entity
     private String exitCombatMessage;
 
     //Constructor
-    public Monster(int hitPoints, int damageDealt, String name, int currentRoomID, String enterCombatMessage, String exitCombatMessage) {
-        super(hitPoints, damageDealt, name, currentRoomID);
+    public Monster(int hitPoints, int damageDealt, String name, Room currentRoom, String enterCombatMessage, String exitCombatMessage) {
+        super(hitPoints, damageDealt, name, currentRoom);
         this.enterCombatMessage = enterCombatMessage;
         this.exitCombatMessage = exitCombatMessage;
     }
