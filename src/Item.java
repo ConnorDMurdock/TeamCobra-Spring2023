@@ -1,2 +1,40 @@
-public class Item {
+//Jonathan Hummel
+import java.io.Serializable;
+
+public class Item implements Serializable {
+
+    String name;
+    int itemID;
+    int roomID;
+    String description;
+
+    public Item(String name, int itemID, int roomID, String description) {
+        this.name = name;
+        this.itemID = itemID;
+        this.roomID = roomID;
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
+    public int getItemID() {
+        return itemID;
+    }
+
+
+    public int getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(int roomID) {
+        this.roomID = roomID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
 }
