@@ -1,5 +1,21 @@
 public class View {
 
+/**
+* displays items, puzzles and monsters in the room
+*/
+
+//Duaa Fatima
+    public void printScanroom(Room room){
+        room.scanRoom();
+    }
+    public void printRoomScan(Room room){
+        room.scanRoom();
+    }
+
+    public void printRoomDesc(Room room){
+        room.enterRoomText();
+    }
+
 
  //Jonathan Hummel
     public void introductionPart1() {
@@ -12,11 +28,6 @@ public class View {
                 " Or will you fall like the one's before you? End his mad reign and become the beacon of hope...");
     }
     //These functions display in the introduction of the game.
-
-
-
-
-
 
 
     /**
@@ -46,13 +57,5 @@ public class View {
         System.out.println("------");
         System.out.println("To navigate through the game, select the direction you'd like to move in by entering one of the navigation commands listed above.");
     }
-
-
-
-
-
-
-
-
 
 }
