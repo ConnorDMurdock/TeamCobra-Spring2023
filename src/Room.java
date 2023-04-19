@@ -133,6 +133,10 @@ import java.util.ArrayList;
                     "\npuzzles found in the room "+ roomPuzzle.getType());
         }
 
+        public void enterRoomText(){
+            System.out.println(roomDescription);
+        }
+
 
 
     }
