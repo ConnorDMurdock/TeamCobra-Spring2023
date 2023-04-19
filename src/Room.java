@@ -138,6 +138,8 @@ public class Room implements Serializable {
                 "\nItems found in the room "+ritemNames.toString()+
                 "\npuzzles found in the room "+ roomPuzzle.getType());
     }
-
+     public void enterRoomText(){
+            System.out.println(roomDescription);
+        }
 
 }
