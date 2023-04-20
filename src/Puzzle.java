@@ -1,6 +1,10 @@
 import java.io.Serializable;
 
 public class Puzzle implements Serializable {
+    //Puzzle Class created by Albert Austin IV
+
+
+    //Puzzle variables
     private String puzzleType;
     private int puzzleID;
     private String problem;
@@ -12,6 +16,7 @@ public class Puzzle implements Serializable {
     private boolean solved;
 
 
+   //Constructor for puzzle
     public Puzzle(String puzzleType, int puzzleID, String problem, String solution, String hint, String correctOutcome, String failOutcome, int attempts, boolean solved) {
         this.puzzleType = puzzleType;
         this.puzzleID = puzzleID;
@@ -22,6 +27,11 @@ public class Puzzle implements Serializable {
         this.failOutcome = failOutcome;
         this.attempts = attempts;
         this.solved = solved;
+    }
+
+    //Getters and setters
+    public String getPuzzleType() {
+        return puzzleType;
     }
 
     public String getProblem() {
@@ -44,7 +54,7 @@ public class Puzzle implements Serializable {
         return attempts;
     }
 
-
+    //Method to solve puzzle
     public boolean solve(String solution) {
         if (this.solution.equals(solution)) {
             System.out.println(correctOutcome);

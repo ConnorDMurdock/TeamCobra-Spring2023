@@ -136,7 +136,7 @@ public class Room implements Serializable {
 
         System.out.println("Monsters found in the room:" + rMonsterNames.toString()+
                 "\nItems found in the room "+ritemNames.toString()+
-                "\npuzzles found in the room "+ roomPuzzle.getType());
+                "\npuzzles found in the room "+ roomPuzzle.getPuzzleType());
     }
      public void enterRoomText(){
             System.out.println(roomDescription);
