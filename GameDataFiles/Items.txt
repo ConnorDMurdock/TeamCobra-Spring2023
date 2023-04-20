@@ -1,0 +1,38 @@
+Consumable_Health Potion_1_2_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_3_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_5_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_6_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_7_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_8_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_10_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_12_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_13_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_15_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_16_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_18_A potion to cure what ails you._10_10
+Consumable_Health Potion_1_19_A potion to cure what ails you._10_10
+UseItem_Sword of Storms_2_2_A sword that will cut through your foes with the force of a hurricane._1_2
+UseItem_Rumble Bat_3_1_Get ready to rumble your enemy's skulls with this bat._1_1
+UseItem_Rumble Bat_3_3_Get ready to rumble your enemy's skulls with this bat._1_1
+UseItem_Dirty Harry (gun)_ 4_4_You feeling lucky, punk?_1_3
+Equipment_Shield of Everlasting_5_5_A persistent bastion to protect you from harm._4_5
+UseItem_Bomb_6_7_This item will blow away the competition._0_3
+UseItem_Knife_7_13_When you need to cut to the chase and take a stab at your problems this knife will help either way you slice it._0_2
+UseItem_Buster Sword of Beginnings_8_10_A huge, unwieldy, 104 pound sword that no normal or sane person would use without having their head in the clouds._1_2
+UseItem_Dual Pistols High Guard_9_12_Who needs accuracy when you've got quantity?_1_1
+UseItem_Magic Staff of Fire_10_8_This magical artifact spews forth a torrent of flames to engulf your foes in a blazing inferno._1_3
+UseItem_Magic Staff of Water_11_14_A staff used to summon a deluge of rushing waves to sweep away any enemies before you._1_2
+Equipment_Reign Ender Armor Legs_12_6_Part of a legendary set of armor that can stand up to the might of the Mad King. It's time to gird your loins with this powerful leg armor._1_15
+Equipment_Reign Ender Armor Chest_13_11_Part of a legendary set of armor that can stand up to the might of the Mad King. This hardened cuirass can absorb substantial damage._2_20
+Equipment_Reign Ender Armor Helmet_14_18_Part of a legendary set of armor that can stand up to the might of the Mad King. Don this helmet to protect the mighty intellect that got you this far._3_15
+Equipment_Green Knight Armor Legs_15_2_Some stylish green leggings that act as light armor._1_3
+Equipment_Green Knight Armor Chest_16_3_This green chest piece offers some protection and flexibility._2_3
+Equipment_Green Knight Armor Helmet_17_4_This green helmet feels quite comfortable when worn._3_3
+Equipment_Ranger Armor Legs_18_8_This mobile armor allows one to move quickly and quietly._1_5
+Equipment_Ranger Armor Chest_19_9_This leather armor offers decent protection without compromising mobility._2_5
+Equipment_Ranger Armor Helmet_20_10_A ranger's hood to cover your face. You feel stealthy just wearing it._3_5
+Equipment_Exo Suit Armor Legs_21_14_These powered polymer poleyns prevent persistent punishment._1_5
+Equipment_Exo Suit Armor Chest_22_15_This mechanized armor inspires you to finish this fight._2_10
+Equipment_Exo Suit Armor Helmet_23_16_With this advance helmet equipped, you're ready to bring doom to your foes._3_5
+UseItem_Spell Talisman_24_6_A powerful talisman surging with arcane energy. Release the magic within to decimate your enemies._0_3
+UseItem_Fate Changer_25_19_The knight dropped this exquisite sword. You feel the power contained within the blade. Perhaps there's a glimmer of hope at the end of your grand journey._1_5
