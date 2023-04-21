@@ -54,8 +54,12 @@ public class Room implements Serializable {
         this.roomName = roomName;
     }
 
-    public void setMonstersList(ArrayList<Monster> monstersList) {
-        this.monstersList = monstersList;
+    public void addMonster(Monster monster) {
+        monstersList.add(monster);
+    }
+
+    public void removeMonster(Monster monster) {
+        monstersList.remove(monster);
     }
 
     public ArrayList<Monster> getMonstersList() {
@@ -155,7 +159,7 @@ public class Room implements Serializable {
             System.out.println("There are no items in this room.");
         }
         if (roomPuzzle != null){
-            System.out.println("Puzzle found in the room: " + ritemNames.toString());
+            System.out.println("There is a " + roomPuzzle.getPuzzleType() + " puzzle in this room.");
         }
         else {
             System.out.println("There is no puzzle in this room.");

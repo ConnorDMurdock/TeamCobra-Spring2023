@@ -6,7 +6,7 @@ public class Puzzle implements Serializable {
 
     //Puzzle variables
     private String puzzleType;
-    private int puzzleID;
+    private String puzzleID;
     private String problem;
     private String solution;
     private String hint;
@@ -17,7 +17,7 @@ public class Puzzle implements Serializable {
 
 
    //Constructor for puzzle
-    public Puzzle(String puzzleType, int puzzleID, String problem, String solution, String hint, String correctOutcome, String failOutcome, int attempts, boolean solved) {
+    public Puzzle(String puzzleType, String puzzleID, String problem, String solution, String hint, String correctOutcome, String failOutcome, int attempts, boolean solved) {
         this.puzzleType = puzzleType;
         this.puzzleID = puzzleID;
         this.problem = problem;

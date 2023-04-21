@@ -108,19 +108,23 @@ public class Player extends Entity
         //Gets the room information based on the given direction.
         //If connection = 0, no room is in that direction.
         String[] connectedRoomInfo = new String[2];
-        switch (direction){
-            case "North":
+        switch (direction) {
+            case "North" -> {
                 connectedRoomInfo[0] = currentRoom.getRoomConnections()[0];
                 connectedRoomInfo[1] = currentRoom.getDirectionText()[0];
-            case "South":
+            }
+            case "South" -> {
                 connectedRoomInfo[0] = currentRoom.getRoomConnections()[1];
                 connectedRoomInfo[1] = currentRoom.getDirectionText()[1];
-            case "West":
+            }
+            case "West" -> {
                 connectedRoomInfo[0] = currentRoom.getRoomConnections()[2];
                 connectedRoomInfo[1] = currentRoom.getDirectionText()[2];
-            case "East":
+            }
+            case "East" -> {
                 connectedRoomInfo[0] = currentRoom.getRoomConnections()[3];
                 connectedRoomInfo[1] = currentRoom.getDirectionText()[3];
+            }
         }
         return connectedRoomInfo;
     }
