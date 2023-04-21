@@ -2,6 +2,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+
+// Class written by Duaa//
 public class Room implements Serializable {
     public String roomID;
     public String roomName;
@@ -69,9 +72,17 @@ public class Room implements Serializable {
         itemsList.add(item);
     }
 
-    public Item removeItemFromRoom(Item item){
-       itemsList.remove(item);
-       return item;
+    public Item removeItemFromRoom(String  itemName){
+       for (Item i : itemsList){
+           if (i.getName().equalsIgnoreCase(itemName)){
+               Item temp = i;
+               itemsList.remove(i);
+               return temp;
+           }
+
+       }
+       return null;
+
     }
     public Puzzle getRoomPuzzle() {
         return roomPuzzle;
