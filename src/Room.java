@@ -1,6 +1,5 @@
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 
@@ -27,17 +26,16 @@ public class Room implements Serializable {
         isCheckpoint = checkpoint;
     }
 
-    public Room(String roomID, String roomName, ArrayList<Monster> monstersList, ArrayList<Item> itemsList, Puzzle roomPuzzle, String[] roomConnections, String[] directionText, String puzzleSolvedDirectionText, String roomDescription, boolean isCheckpoint) {
+    public Room(String roomName, String roomID,  boolean isCheckpoint,  String roomDescription, String[] roomConnections, String[] directionText, String puzzleSolvedDirectionText) {
         this.roomID = roomID;
         this.roomName = roomName;
-        this.monstersList = monstersList;
-        this.itemsList = itemsList;
-        this.roomPuzzle = roomPuzzle;
         this.roomConnections = roomConnections;
         this.directionText = directionText;
         this.puzzleSolvedDirectionText = puzzleSolvedDirectionText;
         this.roomDescription = roomDescription;
         this.isCheckpoint = isCheckpoint;
+        monstersList = new ArrayList<>();
+        itemsList = new ArrayList<>();
     }
 
     public String getRoomID() {
@@ -144,10 +142,24 @@ public class Room implements Serializable {
 
 
         }
-
-        System.out.println("Monsters found in the room:" + rMonsterNames.toString()+
-                "\nItems found in the room "+ritemNames.toString()+
-                "\npuzzles found in the room "+ roomPuzzle.getPuzzleType());
+        if (rMonsterNames.size() > 0){
+            System.out.println("Monsters found in the room: " + rMonsterNames.toString());
+        }
+        else {
+            System.out.println("There are no monsters in this room.");
+        }
+        if (ritemNames.size() > 0){
+            System.out.println("Items found in the room: " + ritemNames.toString());
+        }
+        else {
+            System.out.println("There are no items in this room.");
+        }
+        if (roomPuzzle != null){
+            System.out.println("Puzzle found in the room: " + ritemNames.toString());
+        }
+        else {
+            System.out.println("There is no puzzle in this room.");
+        }
     }
      public void enterRoomText(){
             System.out.println(roomDescription);
