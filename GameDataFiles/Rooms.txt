@@ -1,63 +1,71 @@
-roomName~roomID~rMonsters~rItems~rPuzzles~isCheckpoint
+roomName
+roomID
+isCheckpoint
 roomDescription
 rConnections: n,s,w,e
 directionText
 puzzleSolvedDirectionText
 
-FieldsZone1.1~F1~null~IT3~null~true~
-You find yourself in an open field of flowers and tall grass with a smallt own in the distn[A]nces.  north of where you currently are------room connections
+FieldsZone1.1
+F1
+true
+You find yourself in an open field of flowers and tall grass with a smalltown in the distn[A]nces.
 F2,0,0,0
-North:As you make your way towards the town, you come across a bridge to the west of you that connects the sky island you're currently on to the village. However, to the east of you is an ancient ruin.
-South: As you turn to go south, you suddenly stop and realize the field’s ground cuts off and there’s nothing but clouds…it would seem you're in the sky.
-West:There’s nothing but more grass and flowers that way, it's really pretty though.
-East:There’s nothing but more grass and flowers that way, it's really pretty though.
+As you make your way towards the town, you come across a bridge to the west of you that connects the sky island you're currently on to the village. However, to the east of you is an ancient ruin.
+As you turn to go south, you suddenly stop and realize the field’s ground cuts off and there’s nothing but clouds…it would seem you're in the sky.
+There’s nothing but more grass and flowers that way, it's really pretty though.
+There’s nothing but more grass and flowers that way, it's really pretty though.
 null
-
-FieldsZone1.2~F2~M01,M02~IT1,IT2,IT15~null~false
+FieldsZone1.2
+F2
+false
 As you make your way towards the town, you come across a bridge to the west of you that connects the sky island you're currently on to the village. However, to the east of you is an ancient ruin.
 0,F1,F4,F3
-North:You attempt to go north, but a mountain in front of you is too steep to climb
-South: You find yourself in an open field of flowers and tall grass with a small town in the distn[A]nces north of where you currently arend tall grass with a small town in the distances north of where you currently are.
-West:You cross the bridge and make it to the town, in front of the [E]ntrance is a sign that says “Village of beginnings”, but as you explore and look around, it seems that the town is mostly abandoned. You happen to come across a note on a door while exploring that stated “the king ended all beginnings, head west to seek an audience."
-East:You make your way to the center of the ancient ruins,it is over grown with flowers and the sun is beaming through the stone [P]illars.To the east of you is a separate section of the ruins where you can see a stream of light peering out the door way.
+You attempt to go north, but a mountain in front of you is too steep to climb
+You find yourself in an open field of flowers and tall grass with a small town in the distn[A]nces north of where you currently arend tall grass with a small town in the distances north of where you currently are.
+You cross the bridge and make it to the town, in front of the [E]ntrance is a sign that says “Village of beginnings”, but as you explore and look around, it seems that the town is mostly abandoned. You happen to come across a note on a door while exploring that stated “the king ended all beginnings, head west to seek an audience."
+You make your way to the center of the ancient ruins,it is over grown with flowers and the sun is beaming through the stone [P]illars.To the east of you is a separate section of the ruins where you can see a stream of light peering out the door way.
 null
-
-FieldsZone1.3~F3~M01,M02~IT1,IT3,IT4~null~false
+FieldsZone1.3
+F3
+false
 You make your way to the center of the ancient ruins, it is overgrown with flowers and the sun is beaming through the stone [P]illars.To the east of you is a separate section of the ruins where you can see a stream of light peering out the doorway.
 0,0,F2,F6
-North:You attempt to go north, but the mountain that was too steep to climb is blocking your way…it would seem the ruins came before the mountain.
-South: You attempt to go south but all you see is a statue of a headless warrior wearing a peculiar armor set kneeling down …seems like there’s a wall behind it leading nowhere.
-West:As you make your way towards the town, you come across a bridge to the west of you that connects the sky island you're currently on to the village. However, to the east of you is an ancient ruin.
-East:As you step into the separate section of the ruins, you are greeted by another overgrown area with an open ceiling. The sun is shining down illuminating the doorway you just stepped through.On the far right wall there is a headless statue that is hovering over a [X]ylographic wooden chest located in the center of a little platform.
+You attempt to go north, but the mountain that was too steep to climb is blocking your way…it would seem the ruins came before the mountain.
+You attempt to go south but all you see is a statue of a headless warrior wearing a peculiar armor set kneeling down …seems like there’s a wall behind it leading nowhere.
+As you make your way towards the town, you come across a bridge to the west of you that connects the sky island you're currently on to the village. However, to the east of you is an ancient ruin.
+As you step into the separate section of the ruins, you are greeted by another overgrown area with an open ceiling. The sun is shining down illuminating the doorway you just stepped through.On the far right wall there is a headless statue that is hovering over a [X]ylographic wooden chest located in the center of a little platform.
 null
-
-FieldsZone1.4~F4~M01,M02~IT4,IT17~null~false
+FieldsZone1.4
+F4
+false
 You cross the bridge and make it to the town, in front of the [E]ntrance is a sign that says “Village of beginnings”, but as you explore and look around, it seems that the town is mostly abandoned. You happen to come across a note on a door while exploring that stated “the king ended all beginnings, head west to seek an audience”.
 0,0,F5,F2
-North:You attempt to go north, but do not due to the fact that there is nothing but abandoned houses that way and you find it pointless to explore any further.
-South: You attempt to go south but cannot due to a large crater preventing you from going any further. It would seem a giant explosion of some sort leveled the entire area that way.
-West:As you make your way towards the west side of town, you encounter a multicolored giant wooden door in the middle of a garden. It would seem to enter the door you must head north of your current location.
-East: As you make your way out of the village, you cross the bridge back onto the separate sky island, to the west of you is the village and to the east of you is an ancient ruin.
+You attempt to go north, but do not due to the fact that there is nothing but abandoned houses that way and you find it pointless to explore any further.
+You attempt to go south but cannot due to a large crater preventing you from going any further. It would seem a giant explosion of some sort leveled the entire area that way.
+As you make your way towards the west side of town, you encounter a multicolored giant wooden door in the middle of a garden. It would seem to enter the door you must head north of your current location.
+As you make your way out of the village, you cross the bridge back onto the separate sky island, to the west of you is the village and to the east of you is an ancient ruin.
 null
-
-FieldsZone1.5~F5~null~IT1,IT5~PZ2~false
+FieldsZone1.5
+F5
+false
 As you make your way towards the west side of town, you encounter a multicolore d giant wooden door in the middle of a garden. It would seem to enter the door you must head north of your current location.
 D7,0,0,F4
-North:You attempt to go through the door, but it will not budge. You notice that there are six stone curved letters in the door that can be rearranged if you pick them up.
-South:You attempt to gos outh but there is nothing but a black fence that is encapsulating the garden that way.
-West:You attempt to go west but there is nothing but a black fence that is encapsulating the garden that way.
-East:You make your way out of the garden and head back to the east side of town where you previously discovered the note stating“the king ended all beginnings, head west to seek an audience.
-*IF the puzzle has been solved:North:As you push the door open and step through, you begin to slide down a hill of sand, landing you straight in the middle of a desert. The sun is beaming down with ferocious intensity; in the distant north there seems to be an [O]asis you can barely make o[U]t.
-
-FieldsZone1.6~F6~M03~IT1,IT24,IT12~PZ1~false
+You attempt to go through the door, but it will not budge. You notice that there are six stone curved letters in the door that can be rearranged if you pick them up.
+You attempt to gos outh but there is nothing but a black fence that is encapsulating the garden that way.
+You attempt to go west but there is nothing but a black fence that is encapsulating the garden that way.
+You make your way out of the garden and head back to the east side of town where you previously discovered the note stating“the king ended all beginnings, head west to seek an audience.
+As you push the door open and step through, you begin to slide down a hill of sand, landing you straight in the middle of a desert. The sun is beaming down with ferocious intensity; in the distant north there seems to be an [O]asis you can barely make o[U]t.
+FieldsZone1.6
+F6
+false
 As you step into the separate section of the ruins, you are greeted by another overgrown area with an open ceiling. The sun is shining down illuminating the doorway you just stepped through.On the far right wall there is a   headless statue that is hovering over a [X]ylographic wooden chest located in the center of a little platform.
 0,0,F3,0
-North:You attempt to gonorth, but there is nothing buta broken wall leading straightto that pesky mountain.
-South:You attempt to gosouth but there is nothing buta wall with what seems to bea destroyed mural of anancient battle on it.
-West:You make your way back  to the center of the ancient ruins, it is overgrown with flowers and the sun is beaming through the stone [P]illars.To the east of you is the separate section of the ruins, and to the west is the path that leads back to the village
-East:You walk behind the statue in hope of more loot,but alas, there is nothing but more flowers and rocks.
+You attempt to gonorth, but there is nothing buta broken wall leading straightto that pesky mountain.
+You attempt to gosouth but there is nothing buta wall with what seems to bea destroyed mural of anancient battle on it.
+You make your way back  to the center of the ancient ruins, it is overgrown with flowers and the sun is beaming through the stone [P]illars.To the east of you is the separate section of the ruins, and to the west is the path that leads back to the village
+You walk behind the statue in hope of more loot,but alas, there is nothing but more flowers and rocks.
 null
-
 Desertzone2.1~D7~null~IT1,IT6~null~true
 As you push the door open and step through, you begin to slide down a hill of sand, landing you straight in the middle of a desert. The sun is beaming down with ferocious intensity; in the distant north there seems to be an [O]asis you can barely make o[U]t.
 D8,F5,0,0
@@ -66,7 +74,6 @@ South:You make your wayback up the sand hill andwalk through the door, you’ver
 West:You attempted to go west but to no avail there’s only sand as far as the eye can see, so you return back to the sandhill where the door is south of you and the oasis is north of you.
 East:You attempted to go east but to no avail there’s only sand as far as the eye can see, so you return back to the sandhill where the door is south of you and the oasis isnorth of you.
 null
-
 Desertzone2.2~D8~M04,M05~IT1, IT10,IT18~null~false
 You begin making your way [T]owards the oasis drenched in sweat and happen to stumble upon an abandoned outpost. As you make your way through the outpost you see a sign that has an arrow pointing east with the phrase “[L]aw and Order” on it; the oasis also seems to be in that direction as well.
 0,D7,0,D9
@@ -75,7 +82,6 @@ South:You make your wayback to the sand hill wherethe door to the village is sou
 West:You attempt to go westout of the outpost but takeone look out into the void ofsand and decide against it.
 East:You head east out of the outpost and the oasis is suddenly only [A] few feet away from you. You look back to where the outpost was and notice how far it is now, it would seem there’s a pocket dimension between the west side of the oasis and the east side of the outpost. You also can’t help but to notice that the oasis’ ground is covered in sand, but all the plants seem perfectly healthy.
 null
-
 Desertzone2.3~D9~M04,M05~IT19~null~false
 You head east out of the outpost and the oasis is suddenly only [A] few feet away from you. You look back to where the outpost was and notice how far it is now, it would seem there’s a pocket dimension between the west side of the oasis and the east side of the outpost. You also can’t help but to notice that the oasis’ ground is covered in sand, but all the plants seem perfectly healthy.You step into the oasis and hear the sound of a waterfall roaring to east of you.
 0,0,D8,D10
@@ -84,7 +90,6 @@ South:You attempt to go south, but stop after seeing an enormous sinkhole that y
 West:You head west out of the oasis and are suddenly back outside the abandoned outpost, you look back and see how far the oasis is. The oasis is now to the east of you and the sand hill is to the south.
 East:You head east from the entrance of the oasis to follow the sound of the [W]aterfall. You make it to a fork in the road, to the north of you is the entrance to the waterfall area, and to the east is an underground temple
 null
-
 Desertzone2.4~D10~M04,M05~IT8,IT1,IT20~null~false
 You head east from the entrance of the oasis to follow the sound of the [W]aterfall. You make it to a fork in the road, to the north of you is the entrance to the waterfall area, and to the east is an underground temple.
 D12,0,D9,D11
@@ -93,89 +98,100 @@ South:You attempt to go south,but are unable to proceed due to the plants preven
 West:You head back down the path leading to the entrance of  the oasis; west of you is the abandoned outpost and to the east is the path leading back to the forked path.
 East:You make your way to the entrance of the temple and are met with a long set of stairs leading underground.When you make it down the stairs you see a gigantic sandpit in the middle of the temple; behind the pit is a miniature pyramid with whatseems to be one of those engraved wooden chests in front of the pyramid on a platform.
 null
-
-Desertzone2.5~D11~M06~IT13~PZ4~false
+Desertzone2.5
+D11
+false
 You make your way to the entrance of the temple and are met with a long set of stairs leading underground. When you make it down the stairs you see a gigantic sand pit in the middle of the temple ;behind the pit is a miniature pyramid with what seems to be one of those engraved woodenchests in front of the pyramid on a platform.
 0,0,D10,0
-North:You make your way down the path leading to the waterfall and stop. You see the waterfall is streaming down into a little body of water with an island in the center of it. On the island is a glass door.
-South:You attempt to go south,but are unable to proceed due to the plants preventing you from leaving the oasis that way; it would seem the oasis is enchanted.
-West:You head back down the path leading to the entrance of  the oasis; west of you is the abandoned outpost and to the east is the path leading back to the forked path.
-East:You make your way to the entrance of the temple and are met with a long set of stairs leading underground.When you make it down the stairs you see a gigantic sandpit in the middle of the temple; behind the pit is a miniature pyramid with what seems to be one of those engraved wooden chests infront of the pyramid on a platform.
+You make your way down the path leading to the waterfall and stop. You see the waterfall is streaming down into a little body of water with an island in the center of it. On the island is a glass door.
+You attempt to go south,but are unable to proceed due to the plants preventing you from leaving the oasis that way; it would seem the oasis is enchanted.
+You head back down the path leading to the entrance of  the oasis; west of you is the abandoned outpost and to the east is the path leading back to the forked path.
+You make your way to the entrance of the temple and are met with a long set of stairs leading underground.When you make it down the stairs you see a gigantic sandpit in the middle of the temple; behind the pit is a miniature pyramid with what seems to be one of those engraved wooden chests infront of the pyramid on a platform.
 null
-
-Desertzone2.6~D12~null~IT9,IT1~PZ3~false
+Desertzone2.6
+D12
+false
 You make your way to the entrance of the waterfall and see it rushing into a small body of water. In the center of the body of water is an island with a glass door on it.
 C13,D10,0,0
-North:You attempt to open the door, but it repels you back. You take a closer look at the door and notice that there is a riddle and camels engraved on the door.
-South:You leave the waterfall area and head to the forked path.
-West:You attempt to go west but are unable to proceed due to the plants preventing you from leaving the oasis that way; it would seem the oasis is enchanted.
-East:You attempt to go south but are unable to proceed due to the plants preventing you from leaving.
-*If the puzzle has been solved:North: “You reach to open the door, but your hand slips through it entirely, forming cracks on the door where your hand entered. You pull your hand back out and proceed to walk through the door hearing the sound of glass cracking. When you emerge through the door you step into an [A]lleyway, greeted by the sound of cars honking and people walking. You look at where you came from and notice a large broken mirror, large enough for a person to fit through it.To the north of you is an exit from the alleyway
-
-Cityzone3.1~C13~null~IT1,IT7~null~true
+You attempt to open the door, but it repels you back. You take a closer look at the door and notice that there is a riddle and camels engraved on the door.
+You leave the waterfall area and head to the forked path.
+You attempt to go west but are unable to proceed due to the plants preventing you from leaving the oasis that way; it would seem the oasis is enchanted.
+You attempt to go south but are unable to proceed due to the plants preventing you from leaving.
+“You reach to open the door, but your hand slips through it entirely, forming cracks on the door where your hand entered. You pull your hand back out and proceed to walk through the door hearing the sound of glass cracking. When you emerge through the door you step into an [A]lleyway, greeted by the sound of cars honking and people walking. You look at where you came from and notice a large broken mirror, large enough for a person to fit through it.To the north of you is an exit from the alleyway
+Cityzone3.1
+C13
+true
 You reach to open the door, but your hand slips through it entirely, forming cracks on the door where your hand entered. You pull your hand back out and proceed to walk through the door hearing the sound of glass cracking. When you emerge through the door you step into an [A]lleyway, greeted by the sound of cars honking and people walking. You look at where you came from and notice a large broken mirror, large enough for a person to fit through it.To the north of you is an exit from the alleyway.
 C14,D12,0,0
-North:As you make your way out of the alleyway, you are blinde[D] by the city’s lights.  You look around the area and see [R]obots, flying cars, and people with what seems to have cyber[N]etic implements. As you take in the atmosphere of the environment you notice a large screen flashing pictures of wanted criminals and notice your name and picture pop up; you then wonder how you became a fugitive in a place you’ve never been.You look north of where you currently are and notice an overly crowded street where you can attempt to blend in.
-South:You make your way back to the large broken mirror and as you get closer to it, it begins to repair itself.You step through the mirror hearing the sound of broken glass again and emerge back in the waterfall area of the oasis.
-West:You attempt to head west but are met with a wall with graffiti on it. It looks like it is desert themed.
-East:You attempt to head east but are met with a wall with graffiti on it. The graffiti is of a castle with a large draw bridge with the statement “May the king’s death be long and painful”.
+As you make your way out of the alleyway, you are blinde[D] by the city’s lights.  You look around the area and see [R]obots, flying cars, and people with what seems to have cyber[N]etic implements. As you take in the atmosphere of the environment you notice a large screen flashing pictures of wanted criminals and notice your name and picture pop up; you then wonder how you became a fugitive in a place you’ve never been.You look north of where you currently are and notice an overly crowded street where you can attempt to blend in.
+You make your way back to the large broken mirror and as you get closer to it, it begins to repair itself.You step through the mirror hearing the sound of broken glass again and emerge back in the waterfall area of the oasis.
+You attempt to head west but are met with a wall with graffiti on it. It looks like it is desert themed.
+You attempt to head east but are met with a wall with graffiti on it. The graffiti is of a castle with a large draw bridge with the statement “May the king’s death be long and painful”.
 null
-
-Cityzone3.2~C14~M07,M08~IT11,IT21~null~false
+Cityzone3.2
+C14
+false
 As you make your way out of the alleyway, you are blinde[D] by the city’s lights.  You look around the area and see [R]obots, flying cars, and people with what seems to have cyber[N]etic implements. As you take in the atmosphere of the environment you notice a large screen flashing pictures of wanted criminals and notice your name and picture pop up; you then wonder how you became a fugitive in a place you’ve never been.You look north of where you currently are and notice an overly crowded street where you can attempt to blend in.
 0,C13,C15,0
-North:You attempt to keep heading north, but see a police checkpoint and decide against going that way.
-South:You rush back to the alleyway with the mirror leading to the oasis, it seems like this is the only place you can catch your breath.
-West:You notice a terminal leading to a subway and decide to head down there to try and avoid causing a bigger scene, on your way you see a flier about a protest taking place in front of the [K]ing’s drawbridge on the town square. The flier also states to go north in the subway to get to train 606, then head west on 1st street to get to the drawbridge.
-East:You attempt to headeast but see a police checkpoint and decide against going that way.
+You attempt to keep heading north, but see a police checkpoint and decide against going that way.
+You rush back to the alleyway with the mirror leading to the oasis, it seems like this is the only place you can catch your breath.
+You notice a terminal leading to a subway and decide to head down there to try and avoid causing a bigger scene, on your way you see a flier about a protest taking place in front of the [K]ing’s drawbridge on the town square. The flier also states to go north in the subway to get to train 606, then head west on 1st street to get to the drawbridge.
+You attempt to headeast but see a police checkpoint and decide against going that way.
 null
-
-Cityzone3.3~C15~M07,M08~IT1,IT22~null~false
+Cityzone3.3
+C15
+false
 You notice a terminal leading to a subway and decide to head down there to try and avoid causing a bigger scene, on your way you see a flier about a protest taking place in front of the [K]ing’s drawbridge on the town square. The flier also states to go north in the subway to get to train 606, then head west on 1st street to get to the drawbridge.
 C16,0,0,C14
-North:You make your way onto trai[N] 606; once you see the stop for 1st str[E]et, you get off, head out of the station, and begin to hear chanting west of where you currently are.
-South:You make your way south but soon realize you’ve headed the wrong way, and make your way back to the entrance of the subway.
-West:You make your way west but soon realize you’ve headed the wrong way, and make your way back to the entrance of the subway. However, on your way back you saw a sign about a contest and grand prize in a location called the underground.
-East:You attempt to head east but see a police checkpoint in that direction of the subway and head back to the entrance.
+You make your way onto trai[N] 606; once you see the stop for 1st str[E]et, you get off, head out of the station, and begin to hear chanting west of where you currently are.
+You make your way south but soon realize you’ve headed the wrong way, and make your way back to the entrance of the subway.
+You make your way west but soon realize you’ve headed the wrong way, and make your way back to the entrance of the subway. However, on your way back you saw a sign about a contest and grand prize in a location called the underground.
+You attempt to head east but see a police checkpoint in that direction of the subway and head back to the entrance.
 null
-
-Cityzone3.4~C16~M07,M08~IT23,IT1~null~false
+Cityzone3.4
+C16
+false
 You make your way onto trai[N] 606; once you see the stop for 1st str[E]et, you get off, head out of the station, and begin to hear the protestors to the west of where you currently are.
 0,C15,C17,0
-North: You think to yourself the protest is west of here and don't move.
-South: You decide to head back on 606, and take it back to the station where you can get back to the subway entrance leading back to the overcrowded street.
-West: You make your way towards the protest and see the protestors standing on one  side of the road yelling, while the police are s[T]anding on the other. In between them is an enormous drawbridge leading to the King’s castle but as you look closer you see large runes curved into the drawbridge.
-East:You think to yourself the protest is west of here and don't move.
+You think to yourself the protest is west of here and don't move.
+You decide to head back on 606, and take it back to the station where you can get back to the subway entrance leading back to the overcrowded street.
+You make your way towards the protest and see the protestors standing on one  side of the road yelling, while the police are s[T]anding on the other. In between them is an enormous drawbridge leading to the King’s castle but as you look closer you see large runes curved into the drawbridge.
+You think to yourself the protest is west of here and don't move.
 null
-
-Cityzone3.5~C17~null~null~PZ6~false
+Cityzone3.5
+C17
+false
 You make your way towards the protest and see the protestors standing on one  side of the road yelling, while the police are s[T]anding on the other. In between them is an enormous drawbridge leading to the King’s castle but as you look closer you see large runes curved into the drawbridge.
 CA19,0,C18,C16
-North: As you make your way closer to the drawbridge, the protestors and police disappear;.the drawbridge becomes a massive door of light with runes floating in front of it. You attempt to enter through the massive door, but just run into what feels like a wall of wood. You take a step back and realize the runes actually formulate a question that may need to be answered before you can continue to the castle.
-South: You attempt to go south, but it seems the road is closed due to construction
-West: You look over to the west of the drawbridge and see a big neon sign pointing to a building with the word “UnDerGround” stretched across it. You head inside and the clerk in the front is pointing to a room in the back of the building. You walk into the room and a virtual version of the city spawns; at the end of the road you’re on is an engraved wooden chest.
-East:You make your way back to 1st street where the subway entrance to train  606 is. 
-If the puzzle has been solved:North: As you make your way closer to the drawbridge, the protestors and police disappear; the drawbridge becomes a massive door of light with runes floating in front of it. You decipher what the runes requested and watch as the door shrinks down to a size where you and you alone can enter. As you walk through the door everything around you is engulfed in a white light. You emerge through the door and arrive outside the gates of the castle.To the north of you is a giant suit of armor kneeling in front of the gate leading to the castle, on the gate there are giant letters that make out a phrase, but it would seem the phrase is in the incorrect order to formulate the correct phrase; looks like you’ve reached the King’s last line of defense.
-
-Cityzone3.6~C18~M09~IT1,IT14~PZ5~false
+As you make your way closer to the drawbridge, the protestors and police disappear;.the drawbridge becomes a massive door of light with runes floating in front of it. You attempt to enter through the massive door, but just run into what feels like a wall of wood. You take a step back and realize the runes actually formulate a question that may need to be answered before you can continue to the castle.
+You attempt to go south, but it seems the road is closed due to construction
+You look over to the west of the drawbridge and see a big neon sign pointing to a building with the word “UnDerGround” stretched across it. You head inside and the clerk in the front is pointing to a room in the back of the building. You walk into the room and a virtual version of the city spawns; at the end of the road you’re on is an engraved wooden chest.
+You make your way back to 1st street where the subway entrance to train  606 is.
+As you make your way closer to the drawbridge, the protestors and police disappear; the drawbridge becomes a massive door of light with runes floating in front of it. You decipher what the runes requested and watch as the door shrinks down to a size where you and you alone can enter. As you walk through the door everything around you is engulfed in a white light. You emerge through the door and arrive outside the gates of the castle.To the north of you is a giant suit of armor kneeling in front of the gate leading to the castle, on the gate there are giant letters that make out a phrase, but it would seem the phrase is in the incorrect order to formulate the correct phrase; looks like you’ve reached the King’s last line of defense.
+Cityzone3.6
+C18
+false
 You look over to the west of the drawbridge and see a big neon sign pointing to a building with the word “UnDerGround” stretched across it. You head inside and the clerk in the front is pointing to a room in the back of the building. You walk into the room and a virtual version of the city spawns; at the end of the road you’re on is an engraved wooden chest.
 0,0,0,C17
-North: You make your way north up the road, but hit an invisible wall and return back to your previous location.
-South: You make your way south down the road, but hit an invisible wall and return back to your previous location.
-West: You make your way west on the road, but hit an invisible wall and return back to your previous location; on your way back you see a graffiti of a serpent with the phrase “Hail Hydra” on it.
-East: You make your way out of the virtual room, and see the clerk with a thumbs up. You then exit the building and head back to the area where the drawbridge is.
+You make your way north up the road, but hit an invisible wall and return back to your previous location.
+You make your way south down the road, but hit an invisible wall and return back to your previous location.
+You make your way west on the road, but hit an invisible wall and return back to your previous location; on your way back you see a graffiti of a serpent with the phrase “Hail Hydra” on it.
+You make your way out of the virtual room, and see the clerk with a thumbs up. You then exit the building and head back to the area where the drawbridge is.
 null
-
-Castlezone4.1~CA19~M10~IT1,IT25~null~true
+Castlezone4.1
+CA19
+M10
+true
 As you make your way closer to the drawbridge, the protestors and police disappear; the drawbridge becomes a massive door of light with runes floating in front of it. You decipher what the runes requested and watch as the door shrinks down to a size where you and you alone can enter. As you walk through the door everything around you is engulfed in a white light. You emerge through the door and arrive outside the gates of the castle.To the north of you is a giant suit of armor kneeling in front of the gate leading to the castle, on the gate there are giant letters that make out a phrase, but it would seem the phrase is in the incorrect order to formulate the correct phrase; looks like you’ve reached the King’s last line of defense.  
 CA20,C17,0,0
-North: You make your way past the Knight’s armor towards the gate and attempt to open the gate. As you try to push the gate open, a booming voice rains down upon you yelling “You are not worthy to pass!”; you stop due to an overwhelming feeling of fear. As you back away you notice a sign next to the gate with the quote “Words can slay even a god”; you then remember the scrambled phrase on the gate and wonder if it is the key to facing the king.
-South: You turn around and see that the door made of light is still there; you make your way through it and emerge back in the city. You walk away from the drawbridge and notice the sound of the protest has returned.
-West: You look to the west of you and see that the castle is surrounded by a desolate wasteland, there is nowhere else to go but forward, or back where you came.
-East:You look to the east of you and see that the castle is surrounded by a desolate wasteland, there is nowhere else to go but forward, or back where you came.
-If the puzzle has been solved:North: “You make your way past the Knight’s armor towards the gate and push open the gate. As you walk through the gate you are transported to the throne room. In front of you sits a giant man with a purple cloak, broken crimson armor, and a sword mighty enough to subjugate a kingdom. This is the beginning of the end, save the kingdom from his madregin.”To the north of you is an exit from the alleyway.
-
-Castlezone4.2~CA20~M11~null~null~true
+You make your way past the Knight’s armor towards the gate and attempt to open the gate. As you try to push the gate open, a booming voice rains down upon you yelling “You are not worthy to pass!”; you stop due to an overwhelming feeling of fear. As you back away you notice a sign next to the gate with the quote “Words can slay even a god”; you then remember the scrambled phrase on the gate and wonder if it is the key to facing the king.
+You turn around and see that the door made of light is still there; you make your way through it and emerge back in the city. You walk away from the drawbridge and notice the sound of the protest has returned.
+You look to the west of you and see that the castle is surrounded by a desolate wasteland, there is nowhere else to go but forward, or back where you came.
+You look to the east of you and see that the castle is surrounded by a desolate wasteland, there is nowhere else to go but forward, or back where you came.
+“You make your way past the Knight’s armor towards the gate and push open the gate. As you walk through the gate you are transported to the throne room. In front of you sits a giant man with a purple cloak, broken crimson armor, and a sword mighty enough to subjugate a kingdom. This is the beginning of the end, save the kingdom from his madregin.”To the north of you is an exit from the alleyway.
+Castlezone4.2
+CA20
+true
 You make your way past the Knight’s armor towards the gate and push open the gate. As you walk through the gate you are transported to the throne room. In front of you sits a giant man with a purple cloak, broken crimson armor, and a sword mighty enough to subjugate a kingdom. This is the beginning of the end, save the kingdom from his madregin.
 0,CA19,0,0
 There is nowhere else to go; face the king, or perish at his hands
