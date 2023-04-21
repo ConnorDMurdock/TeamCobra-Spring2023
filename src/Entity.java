@@ -1,4 +1,6 @@
-public class Entity
+import java.io.Serializable;
+
+public class Entity implements Serializable
 {
     /* Class created by: Connor Murdock
      * The Entity class is the parent class of anything that exists in the game and participates in combat

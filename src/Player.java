@@ -50,12 +50,12 @@ public class Player extends Entity
     }
 
     //Takes in a String of the item's name given by the user, checks the player's inventory for that item, then returns that item if it exists.
-    //----Edit function name(s) if need be
     public Item removeItemFromInventory(String itemName) {
         Item item = null;
-        for (int i = 0; i < playerInventory.size(); i++){
-            if (playerInventory.get(i).getItemName().equalsIgnoreCase(itemName)){
-                item = playerInventory.get(i);
+        for (Item value : playerInventory) {
+            if (value.getName().equalsIgnoreCase(itemName)) {
+                item = value;
+                playerInventory.remove(value);
             }
         }
         return item;
@@ -63,12 +63,10 @@ public class Player extends Entity
 
     //Returns an ArrayList of Strings, where each index is [item name: item description]
     //each index is for one item. The ArrayList size is equal to the # of items in the inventory
-    //----Edit function name(s) if need be
     public ArrayList<String> checkInventory() {
         ArrayList<String> inventoryLines = new ArrayList<>();
-        for (int i = 0; i < playerInventory.size(); i++){
-            Item item = playerInventory.get(i);
-            inventoryLines.add("[" + item.getItemName + ": " + item.getItemDescription + "]");
+        for (Item item : playerInventory) {
+            inventoryLines.add("[" + item.getName() + ": " + item.getDescription() + "]");
         }
         return inventoryLines;
     }
@@ -96,7 +94,7 @@ public class Player extends Entity
     public void equipItem(String itemName) {
         Item item = null;
         for (int i = 0; i < playerInventory.size(); i++) {
-            if (playerInventory.get(i).getItemName().equalsIgnoreCase(itemName)) {
+            if (playerInventory.get(i).getName().equalsIgnoreCase(itemName)) {
                 item = playerInventory.get(i);
             }
         }
@@ -106,16 +104,36 @@ public class Player extends Entity
         }
     }
 
-    //----Finish this once the room class is added
-    public void move(int direction){
-        //Move the player to the room in the given direction.
-        //If connection = 0, no room is in that direction and the player does not move.
-        switch (direction){
-            case 1: currentRoom.getConnections[0];
-            case 2: currentRoom.getConnections[1];
-            case 3: currentRoom.getConnections[2];
-            case 4: currentRoom.getConnections[3];
+    public String[] getConnectionInDirection(String direction){
+        //Gets the room information based on the given direction.
+        //If connection = 0, no room is in that direction.
+        String[] connectedRoomInfo = new String[2];
+        switch (direction) {
+            case "North" -> {
+                connectedRoomInfo[0] = currentRoom.getRoomConnections()[0];
+                connectedRoomInfo[1] = currentRoom.getDirectionText()[0];
+            }
+            case "South" -> {
+                connectedRoomInfo[0] = currentRoom.getRoomConnections()[1];
+                connectedRoomInfo[1] = currentRoom.getDirectionText()[1];
+            }
+            case "West" -> {
+                connectedRoomInfo[0] = currentRoom.getRoomConnections()[2];
+                connectedRoomInfo[1] = currentRoom.getDirectionText()[2];
+            }
+            case "East" -> {
+                connectedRoomInfo[0] = currentRoom.getRoomConnections()[3];
+                connectedRoomInfo[1] = currentRoom.getDirectionText()[3];
+            }
         }
+        return connectedRoomInfo;
+    }
+
+    //Moves the player into the given room
+    //displays the room enter text
+    public void move(Room room){
+        currentRoom = room;
+        room.enterRoomText();
     }
 
     /* Sets the player's hit points to a number equal to hit points minus incoming damage. Simulates taking damage during combat.

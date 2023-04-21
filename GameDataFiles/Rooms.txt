@@ -1,11 +1,3 @@
-roomName
-roomID
-isCheckpoint
-roomDescription
-rConnections: n,s,w,e
-directionText
-puzzleSolvedDirectionText
-
 FieldsZone1.1
 F1
 true
@@ -66,7 +58,9 @@ You attempt to gosouth but there is nothing buta wall with what seems to bea des
 You make your way back  to the center of the ancient ruins, it is overgrown with flowers and the sun is beaming through the stone [P]illars.To the east of you is the separate section of the ruins, and to the west is the path that leads back to the village
 You walk behind the statue in hope of more loot,but alas, there is nothing but more flowers and rocks.
 null
-Desertzone2.1~D7~null~IT1,IT6~null~true
+Desertzone2.1
+D7
+true
 As you push the door open and step through, you begin to slide down a hill of sand, landing you straight in the middle of a desert. The sun is beaming down with ferocious intensity; in the distant north there seems to be an [O]asis you can barely make o[U]t.
 D8,F5,0,0
 North:You begin making your way [T]owards the oasis drenched in sweat and happen to stumble upon an abandoned outpost. As you make your way through the outpost you see a sign that has an arrow pointing east with the phrase “[L]aw and Order” on it; the oasis also seems to be in that direction as well.
@@ -74,7 +68,9 @@ South:You make your wayback up the sand hill andwalk through the door, you’ver
 West:You attempted to go west but to no avail there’s only sand as far as the eye can see, so you return back to the sandhill where the door is south of you and the oasis is north of you.
 East:You attempted to go east but to no avail there’s only sand as far as the eye can see, so you return back to the sandhill where the door is south of you and the oasis isnorth of you.
 null
-Desertzone2.2~D8~M04,M05~IT1, IT10,IT18~null~false
+Desertzone2.2
+D8
+false
 You begin making your way [T]owards the oasis drenched in sweat and happen to stumble upon an abandoned outpost. As you make your way through the outpost you see a sign that has an arrow pointing east with the phrase “[L]aw and Order” on it; the oasis also seems to be in that direction as well.
 0,D7,0,D9
 North:You attempt to gonorth out of the outpost buttake one look out into thevoid of sand and decideagainst it.
@@ -82,7 +78,9 @@ South:You make your wayback to the sand hill wherethe door to the village is sou
 West:You attempt to go westout of the outpost but takeone look out into the void ofsand and decide against it.
 East:You head east out of the outpost and the oasis is suddenly only [A] few feet away from you. You look back to where the outpost was and notice how far it is now, it would seem there’s a pocket dimension between the west side of the oasis and the east side of the outpost. You also can’t help but to notice that the oasis’ ground is covered in sand, but all the plants seem perfectly healthy.
 null
-Desertzone2.3~D9~M04,M05~IT19~null~false
+Desertzone2.3
+D9
+false
 You head east out of the outpost and the oasis is suddenly only [A] few feet away from you. You look back to where the outpost was and notice how far it is now, it would seem there’s a pocket dimension between the west side of the oasis and the east side of the outpost. You also can’t help but to notice that the oasis’ ground is covered in sand, but all the plants seem perfectly healthy.You step into the oasis and hear the sound of a waterfall roaring to east of you.
 0,0,D8,D10
 North:You attempt to go north, but are stopped by a huge stone that seems to have a face on it, sadly there is no way to pass it, so you return back to the entrance of the oasis.
@@ -90,7 +88,9 @@ South:You attempt to go south, but stop after seeing an enormous sinkhole that y
 West:You head west out of the oasis and are suddenly back outside the abandoned outpost, you look back and see how far the oasis is. The oasis is now to the east of you and the sand hill is to the south.
 East:You head east from the entrance of the oasis to follow the sound of the [W]aterfall. You make it to a fork in the road, to the north of you is the entrance to the waterfall area, and to the east is an underground temple
 null
-Desertzone2.4~D10~M04,M05~IT8,IT1,IT20~null~false
+Desertzone2.4
+D10
+false
 You head east from the entrance of the oasis to follow the sound of the [W]aterfall. You make it to a fork in the road, to the north of you is the entrance to the waterfall area, and to the east is an underground temple.
 D12,0,D9,D11
 North:You make your way behind the pyramid but cannot go any further because it is a dead end. However, on your way back you notice a ruine that states “Here lies the true heir, long live the queen”,you then question why you?
@@ -117,7 +117,7 @@ You attempt to open the door, but it repels you back. You take a closer look at 
 You leave the waterfall area and head to the forked path.
 You attempt to go west but are unable to proceed due to the plants preventing you from leaving the oasis that way; it would seem the oasis is enchanted.
 You attempt to go south but are unable to proceed due to the plants preventing you from leaving.
-“You reach to open the door, but your hand slips through it entirely, forming cracks on the door where your hand entered. You pull your hand back out and proceed to walk through the door hearing the sound of glass cracking. When you emerge through the door you step into an [A]lleyway, greeted by the sound of cars honking and people walking. You look at where you came from and notice a large broken mirror, large enough for a person to fit through it.To the north of you is an exit from the alleyway
+You reach to open the door, but your hand slips through it entirely, forming cracks on the door where your hand entered. You pull your hand back out and proceed to walk through the door hearing the sound of glass cracking. When you emerge through the door you step into an [A]lleyway, greeted by the sound of cars honking and people walking. You look at where you came from and notice a large broken mirror, large enough for a person to fit through it.To the north of you is an exit from the alleyway
 Cityzone3.1
 C13
 true
@@ -180,7 +180,6 @@ You make your way out of the virtual room, and see the clerk with a thumbs up. Y
 null
 Castlezone4.1
 CA19
-M10
 true
 As you make your way closer to the drawbridge, the protestors and police disappear; the drawbridge becomes a massive door of light with runes floating in front of it. You decipher what the runes requested and watch as the door shrinks down to a size where you and you alone can enter. As you walk through the door everything around you is engulfed in a white light. You emerge through the door and arrive outside the gates of the castle.To the north of you is a giant suit of armor kneeling in front of the gate leading to the castle, on the gate there are giant letters that make out a phrase, but it would seem the phrase is in the incorrect order to formulate the correct phrase; looks like you’ve reached the King’s last line of defense.  
 CA20,C17,0,0

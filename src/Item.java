@@ -5,13 +5,12 @@ public class Item implements Serializable {
 
     private String name;
     private int itemID;
-    private int roomID;
+    private String roomID;
     private String description;
 
-    public Item(String name, int itemID, int roomID, String description) {
+    public Item(String name, int itemID, String description) {
         this.name = name;
         this.itemID = itemID;
-        this.roomID = roomID;
         this.description = description;
     }
 
@@ -25,11 +24,11 @@ public class Item implements Serializable {
     }
 
 
-    public int getRoomID() {
+    public String getRoomID() {
         return roomID;
     }
 
-    public void setRoomID(int roomID) {
+    public void setRoomID(String roomID) {
         this.roomID = roomID;
     }
 

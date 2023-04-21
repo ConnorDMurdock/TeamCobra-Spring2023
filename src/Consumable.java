@@ -8,10 +8,10 @@ public class Consumable extends Item implements Serializable {
 
     private int remainingHP;
 
-    public Consumable(String name, int itemID, int roomID, String description, int potionHP, int remainingHP) {
-        super(name, itemID, roomID, description);
+    public Consumable(String name, int itemID, String description, int potionHP) {
+        super(name, itemID, description);
         this.potionHP = potionHP;
-        this.remainingHP = remainingHP;
+        this.remainingHP = potionHP;
     }
 
    /* public void useConsumable(playerHP){
