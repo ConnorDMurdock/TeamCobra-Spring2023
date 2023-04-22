@@ -57,7 +57,7 @@ public class Entity implements Serializable
     //Sets this entity's hit points to a number equal to hit points minus incoming damage. Simulates taking damage during combat.
     //If the entity has 100 hit points and takes 10 damage, this function will subtract 10 and make hit points equal 90
     //returns the damage taken to display to the console.
-    public int takeDamage(int damage, boolean dodged) {
+    protected int takeDamage(int damage, boolean dodged) {
         this.hitPoints = hitPoints - damage;
         return damage;
     }
