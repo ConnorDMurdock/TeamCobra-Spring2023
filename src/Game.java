@@ -6,17 +6,22 @@ public class Game {
 
     //Puzzle loop - Albert Austin IV
     public void enterPuzzleLoop() {
+        //needed variables
         Boolean puzzleLoop;
         Boolean solution;
 
+        //If user input is "get instructions", begin puzzle loop
         if (Controller.getUserInput().toString().equals("get instructions")) {
             puzzleLoop = true;
 
+            //print puzzle problem
             View.printPuzzleProblem(Room.getRoomPuzzle().getProblem());
 
+            //determine the reward type from puzzle
             switch (Room.getRoomPuzzle().getPuzzleReward()) {
                 case "chest":
 
+                    //loop through puzzle attempts and adds armor to inventory when solved
                     for (int i = 0; i == Room.getRoomPuzzle().getAttempts(); i--) {
 
                         solution = Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
@@ -36,6 +41,7 @@ public class Game {
 
                 case "progress":
 
+                    //loop through puzzle attempts and progresses to next room when solved
                     for (int i = 0; i == Room.getRoomPuzzle().getAttempts(); i--) {
 
                         solution = Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
@@ -54,6 +60,7 @@ public class Game {
 
                 case "heal":
 
+                    //loop through puzzle attempts and gives player potions when solved
                     for (int i = 0; i == Room.getRoomPuzzle().getAttempts(); i--) {
 
                         solution = Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
