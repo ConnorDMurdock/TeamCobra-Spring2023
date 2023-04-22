@@ -36,7 +36,7 @@ public class Game {
 
                 case "progress":
 
-                    for (int i = 0; i = Room.getRoomPuzzle.getAttempts(); i--) {
+                    for (int i = 0; i == Room.getRoomPuzzle.getAttempts(); i--) {
 
                         solution = Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
 
@@ -54,9 +54,9 @@ public class Game {
 
                 case "heal":
 
-                    for (int i = 0; i = Room.getRoomPuzzle.getAttempts(); i--) {
+                    for (int i = 0; i == Room.getRoomPuzzle.getAttempts(); i--) {
 
-                        solution == Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
+                        solution = Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
 
                         if (solution == true) {
                             View.printPuzzleSolveAttempt(Room.getRoomPuzzle().getCorrectOutcome());
@@ -68,6 +68,9 @@ public class Game {
                             View.printPuzzleSolveAttempt(Room.getRoomPuzzle().getFailOutcome());
                         }
                     }
+
+                default:
+                    System.out.println("Error: No reward type found");
             }
 
 
