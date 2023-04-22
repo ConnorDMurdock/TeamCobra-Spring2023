@@ -1,4 +1,16 @@
+import java.util.ArrayList;
+
 public class View {
+
+    //Prints any text given as a normal message
+    public void genericPrint(String text){
+        System.out.println(text);
+    }
+
+    //Prints any text given with red text
+    public void errorPrint(String text){
+        System.err.println(text);
+    }
 
 /**
 * displays items, puzzles and monsters in the room
@@ -16,6 +28,68 @@ public class View {
         room.enterRoomText();
     }
 
+
+    //Connor Murdock
+    //Prints information regarding the player to the console
+
+    //==Out-of-combat commands==
+    public void playerStatus(String[] stats) {
+        System.out.println("HP: " + stats[0]);
+        System.out.println("Attack: " + stats[1]);
+        System.out.println("Damage Taken: " + stats[2] + "%");
+        System.out.println("Lives Remaining: " + stats[3]);
+    }
+
+    public void playerCheckInventory(ArrayList<String> inventoryLines) {
+        if (inventoryLines.size() == 0){
+            System.err.println("Your inventory is empty");
+        }
+        else {
+            System.out.println("Your Inventory:");
+            for (String line : inventoryLines){
+                System.out.println(line);
+            }
+        }
+    }
+
+    //==In-combat commands==
+    public void damageTaken(String entityName, int damage) {
+        System.out.println(entityName + " took " + damage + " damage!");
+    }
+
+    public void playerRun() {
+        System.out.println("You escape from the combat encounter");
+    }
+
+    public void playerDodgePrepare() {
+        System.out.println("You prepare to dodge the monster's next attack...");
+    }
+
+    public void playerDodgeSuccess() {
+        System.out.println("You successfully dodged the attack!");
+    }
+
+    public void entityDefeated(String name) {
+        System.out.println(name + " has been defeated.");
+    }
+
+    public void turnStart(String name) {
+        System.out.println("It's now " + name + "'s turn");
+    }
+
+    public void playerTurn() {
+        System.out.println("What would you like to do?");
+    }
+
+    public void combatHelp() {
+        System.out.println("==Combat Commands==");
+        System.out.println("Attack: attack the monster");
+        System.out.println("Use [Item Name]: use the specified item");
+        System.out.println("Dodge: dodge the monster's next attack");
+        System.out.println("Run: escape from combat");
+        System.out.println("Status: see your current status");
+        System.out.println("Help: see this menu");
+    }
 
  //Jonathan Hummel
     public void introductionPart1() {
