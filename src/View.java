@@ -103,6 +103,27 @@ public class View {
     }
     //These functions display in the introduction of the game.
 
+    /**
+     * Puzzle Section
+     */
+
+    //Albert Austin IV
+
+    //Print puzzle problem
+    public void printPuzzleProblem(String puzzleProblem) {
+        System.out.println(puzzleProblem);
+    }
+
+    //Print puzzle hint
+    public void printPuzzleHint(String puzzleHint) {
+        System.out.println(puzzleHint);
+    }
+
+    //Print puzzle solve attempt
+    public void printPuzzleSolveAttempt(String puzzleSolveAttempt) {
+        System.out.println(puzzleSolveAttempt);
+    }
+
 
     /**
      * Displays the navigation commands used to traverse the map, such as North, South, East, and West, as well as all the commands the player can use to interact with items, enemies, and the player inventory.
