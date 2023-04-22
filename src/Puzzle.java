@@ -14,9 +14,10 @@ public class Puzzle implements Serializable {
     private String failOutcome;
     private int attempts;
     private boolean solved;
+//    private String puzzleReward;
 
 
-   //Constructor for puzzle
+   //Constructor for puzzle, May have puzzle reward included
     public Puzzle(String puzzleType, String puzzleID, String problem, String solution, String hint, String correctOutcome, String failOutcome, int attempts, boolean solved) {
         this.puzzleType = puzzleType;
         this.puzzleID = puzzleID;
@@ -27,9 +28,13 @@ public class Puzzle implements Serializable {
         this.failOutcome = failOutcome;
         this.attempts = attempts;
         this.solved = solved;
+//        this.puzzleReward = puzzleReward;
     }
 
     //Getters and setters
+//    public String getPuzzleReward() {
+//        return puzzleReward;
+//    }
     public String getPuzzleType() {
         return puzzleType;
     }
