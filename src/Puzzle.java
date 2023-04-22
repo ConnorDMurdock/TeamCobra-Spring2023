@@ -18,7 +18,7 @@ public class Puzzle implements Serializable {
 
 
    //Constructor for puzzle, May have puzzle reward included
-    public Puzzle(String puzzleType, String puzzleID, String problem, String solution, String hint, String correctOutcome, String failOutcome, int attempts, boolean solved) {
+    public Puzzle(String puzzleType, String puzzleID, String problem, String solution, String hint, String correctOutcome, String failOutcome, int attempts, boolean solved, String puzzleReward) {
         this.puzzleType = puzzleType;
         this.puzzleID = puzzleID;
         this.problem = problem;

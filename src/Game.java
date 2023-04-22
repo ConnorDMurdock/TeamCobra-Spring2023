@@ -17,7 +17,7 @@ public class Game {
             switch (Room.getRoomPuzzle().getPuzzleReward()) {
                 case "chest":
 
-                    for (int i = 0; i == Room.getRoomPuzzle.getAttempts(); i--) {
+                    for (int i = 0; i == Room.getRoomPuzzle().getAttempts(); i--) {
 
                         solution = Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
 
@@ -36,7 +36,7 @@ public class Game {
 
                 case "progress":
 
-                    for (int i = 0; i == Room.getRoomPuzzle.getAttempts(); i--) {
+                    for (int i = 0; i == Room.getRoomPuzzle().getAttempts(); i--) {
 
                         solution = Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
 
@@ -54,7 +54,7 @@ public class Game {
 
                 case "heal":
 
-                    for (int i = 0; i == Room.getRoomPuzzle.getAttempts(); i--) {
+                    for (int i = 0; i == Room.getRoomPuzzle().getAttempts(); i--) {
 
                         solution = Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
 
