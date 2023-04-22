@@ -24,11 +24,12 @@ public class Player extends Entity
     //The player's equipped weapon. The player can only equip one weapon at a time.
     private UseItem playerWeapon;
 
-    //Constructor. The default values for the player are:
-    //remaining lives = 3
-    //damage reduction = 1
-    //equipment slots = 4
-    //no weapon equipped
+    /* Constructor. The default values for the player are:
+     * remaining lives = 3
+     * damage reduction = 1
+     * equipment slots = 4
+     * no weapon equipped
+     */
     public Player(int hitPoints, int damageDealt, String name, Room currentRoom) {
         super(hitPoints, damageDealt, name, currentRoom);
         this.remainingLives = 3;
@@ -96,12 +97,11 @@ public class Player extends Entity
         this.hitPoints = newHitPoints;
     }
 
-    public int useItem(String[] input) {
-        //use the item
-        return 0;
+    public void useItem(String typeOfUse) {
+
     }
 
-    //----Finish this code once items have been added to the branch
+    //Equips the item that the user specifies, as long as the player has the item in their inventory and there is not already an item equipped to that slot.
     public void equipItem(String itemName) {
         Item item = null;
         for (int i = 0; i < playerInventory.size(); i++) {
@@ -113,11 +113,47 @@ public class Player extends Entity
         if (item == null) {
             System.err.println("You do not have that item!");
         }
+        else {
+            try {
+                Equipment equipment = (Equipment) item;
+                int equipmentSlot = equipment.getEquipmentSlot();
+                if (playerEquipment[equipmentSlot] == null) {
+                    playerEquipment[equipmentSlot] = equipment;
+                    percentOfDamageTaken -= equipment.getDamageReduction();
+                    playerInventory.remove(equipment);
+                    System.out.println("equipped the " + equipment.getName());
+                }
+                else {
+                    System.err.println("You already have equipment in that slot!");
+                }
+            } catch (ClassCastException cce) {
+                System.err.println("You can't equip that item");
+            }
+        }
     }
 
+    //Unequips the item that the user specifies, as long as the item is equipped and the inventory is not full.
+    public void unequipItem(String itemName){
+        for (Equipment e : playerEquipment){
+            if (e != null){
+                if (itemName.equalsIgnoreCase(e.getName())){
+                    if (isInventoryFull()){
+                        System.err.println("Cannot unequip the " + e.getName() + ". Inventory is full!");
+                    }
+                    else {
+                        addItemToInventory(e);
+                        playerEquipment[e.getEquipmentSlot()] = null;
+                        percentOfDamageTaken += e.getDamageReduction();
+                        System.out.println("Unequipped the " + e.getName());
+                    }
+                }
+            }
+        }
+    }
+
+    //Gets the room information based on the given direction.
+    //If connection = 0, no room is in that direction.
     public String[] getConnectionInDirection(String direction){
-        //Gets the room information based on the given direction.
-        //If connection = 0, no room is in that direction.
         String[] connectedRoomInfo = new String[2];
         switch (direction) {
             case "North" -> {
@@ -152,6 +188,7 @@ public class Player extends Entity
         return checkpoint;
     }
 
+    //Combines the player's current status into an Array that can be used later to print to the console
     public String[] checkStatus() {
         String[] status = new String[4];
         status[0] = String.valueOf(hitPoints);

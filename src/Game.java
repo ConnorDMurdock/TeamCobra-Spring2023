@@ -72,7 +72,7 @@ public class Game {
                 //Player uses an item
                 else if (input[0].equalsIgnoreCase("Use")){
                     if (input[1].equalsIgnoreCase("health") && input[2].equalsIgnoreCase("Potion")){
-                        player.heal(player.useItem(input));
+                        //player.heal(player.useItem(input));
                     }
                     validInput = true;
                 }
