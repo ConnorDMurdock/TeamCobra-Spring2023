@@ -1,5 +1,5 @@
-import java.io.File;
-import java.io.Serializable;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -129,6 +129,41 @@ public class Map implements Serializable {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    //Saves the player's progress by saving the Player object and Map object to a file
+    //Saves as objects, text illegible to humans providing a simple form of encryption
+    //File will be saved to the folder GameDataFiles as Saves.dat
+    //File always saved in the order of player then map
+    public void saveGame(Map gameMap, Player player) {
+        try {
+            ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream("GameDataFiles/Save.dat"));
+            writer.writeObject(player);
+            writer.writeObject(gameMap);
+            writer.close();
+        } catch (IOException ioe){
+            System.err.println("Game could not be saved");
+            ioe.printStackTrace();
+        }
+    }
+
+    //Reads the Saves.dat file in the GameDataFiles folder
+    //Returns a list of objects, where index 0 is the Player from the save, and index 1 is the Map from the save
+    public ArrayList<Object> loadGame() {
+        ArrayList<Object> objectsFromFile = new ArrayList<>();
+        try {
+            ObjectInputStream reader = new ObjectInputStream(new FileInputStream("GameDataFiles/Save.dat"));
+            while (true){
+                Object obj = reader.readObject();
+                objectsFromFile.add(obj);
+            }
+        } catch (EOFException eofe){
+            //File loaded successfully
+        } catch (Exception e){
+            System.err.println("Game could not be loaded");
+            e.printStackTrace();
+        }
+        return objectsFromFile;
     }
 
     //Returns the HashMap from this object
