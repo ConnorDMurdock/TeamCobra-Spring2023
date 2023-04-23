@@ -27,6 +27,11 @@ public class Entity implements Serializable
         this.currentRoom = currentRoom;
     }
 
+    //Returns current room of this entity
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
     //Returns the hit points of this entity
     public int getHitPoints() {
         return hitPoints;

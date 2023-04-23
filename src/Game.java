@@ -92,35 +92,37 @@ public class Game {
     }
 
     //Puzzle loop - Albert Austin IV
-    public void enterPuzzleLoop() {
+    public void enterPuzzleLoop(Player player) {
         //needed variables
+        Controller controller = new Controller();
+        View view = new View();
         Boolean puzzleLoop;
         Boolean solution;
 
         //If user input is "get instructions", begin puzzle loop
-        if (Controller.getUserInput().toString().equals("get instructions")) {
-            puzzleLoop = true;
+        if (controller.getUserInput().toString().equals("get instructions")) {
+            puzzleLoop = false;
 
             //print puzzle problem
-            View.printPuzzleProblem(Room.getRoomPuzzle().getProblem());
+            view.printPuzzleProblem(player.getCurrentRoom().getRoomPuzzle().getProblem());
 
             //determine the reward type from puzzle
-            switch (Room.getRoomPuzzle().getPuzzleReward()) {
+            switch (player.getCurrentRoom().getRoomPuzzle().getPuzzleReward()) {
                 case "chest":
 
                     //loop through puzzle attempts and adds armor to inventory when solved
-                    for (int i = 0; i == Room.getRoomPuzzle().getAttempts(); i--) {
+                    for (int i = 0; i == player.getCurrentRoom().getRoomPuzzle().getAttempts(); i--) {
 
-                        solution = Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
+                        solution = player.getCurrentRoom().getRoomPuzzle().solve(controller.getUserInput().toString());
 
                         if (solution == true) {
-                            View.printPuzzleSolveAttempt(Room.getRoomPuzzle().getCorrectOutcome());
+                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getCorrectOutcome());
                             //Legendary armor needs to be added to the player's inventory
-                            puzzleLoop = false;
+                            puzzleLoop = true;
                             break;
                         }
                         else {
-                            View.printPuzzleSolveAttempt(Room.getRoomPuzzle().getFailOutcome());
+                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getFailOutcome());
                         }
                     }
 
@@ -129,18 +131,18 @@ public class Game {
                 case "progress":
 
                     //loop through puzzle attempts and progresses to next room when solved
-                    for (int i = 0; i == Room.getRoomPuzzle().getAttempts(); i--) {
+                    for (int i = 0; i == player.getCurrentRoom().getRoomPuzzle().getAttempts(); i--) {
 
-                        solution = Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
+                        solution = player.getCurrentRoom().getRoomPuzzle().solve(controller.getUserInput().toString());
 
                         if (solution == true) {
-                            View.printPuzzleSolveAttempt(Room.getRoomPuzzle().getCorrectOutcome());
+                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getCorrectOutcome());
                             //Progress to next room
-                            puzzleLoop = false;
+                            puzzleLoop = true;
                             break;
                         }
                         else {
-                            View.printPuzzleSolveAttempt(Room.getRoomPuzzle().getFailOutcome());
+                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getFailOutcome());
                         }
                     }
                     break;
@@ -148,18 +150,18 @@ public class Game {
                 case "heal":
 
                     //loop through puzzle attempts and gives player potions when solved
-                    for (int i = 0; i == Room.getRoomPuzzle().getAttempts(); i--) {
+                    for (int i = 0; i == player.getCurrentRoom().getRoomPuzzle().getAttempts(); i--) {
 
-                        solution = Room.getRoomPuzzle().solve(Controller.getUserInput().toString());
+                        solution = player.getCurrentRoom().getRoomPuzzle().solve(controller.getUserInput().toString());
 
                         if (solution == true) {
-                            View.printPuzzleSolveAttempt(Room.getRoomPuzzle().getCorrectOutcome());
+                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getCorrectOutcome());
                             //Give player potions
-                            puzzleLoop = false;
+                            puzzleLoop = true;
                             break;
                         }
                         else {
-                            View.printPuzzleSolveAttempt(Room.getRoomPuzzle().getFailOutcome());
+                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getFailOutcome());
                         }
                     }
 
@@ -171,9 +173,9 @@ public class Game {
 
         }
 
-        if (Controller.getUserInput().toString().equals("Hint for")) {
+        if (controller.getUserInput().toString().equals("Hint for")) {
 
-            View.printPuzzleHint(Room.getRoomPuzzle().getHint());
+            view.printPuzzleHint(player.getCurrentRoom().getRoomPuzzle().getHint());
         }
 
 
