@@ -4,6 +4,16 @@ import java.util.Scanner;
 
 public class Game {
 
+    public static void main(String[] args) {
+        Map map = new Map();
+        HashMap<String, Room> gameMap = map.getGameMap();
+        Player player = new Player(100 , 10, "name", gameMap.get("F6"));
+        Game game = new Game();
+
+        game.enterPuzzleLoop(player);
+    }
+
+/*
     // Muhammad Marenah
 
     private Player player;
@@ -91,95 +101,108 @@ public class Game {
         }
         return direction;
     }
+    */
 
     //Puzzle loop - Albert Austin IV
-    public void enterPuzzleLoop(Player player, PuzzleReward item) {
+    public void enterPuzzleLoop(Player player) {
         //needed variables
         Controller controller = new Controller();
         View view = new View();
-        Boolean puzzleLoop;
+        Boolean puzzleLoop = true;
         Boolean solution;
+        Puzzle puzzle = player.getCurrentRoom().getRoomPuzzle();
 
-        //If user input is "get instructions", begin puzzle loop
-        if (controller.getUserInput().toString().equals("get instructions")) {
-            puzzleLoop = false;
+        while (puzzleLoop){
 
-            //print puzzle problem
-            view.printPuzzleProblem(player.getCurrentRoom().getRoomPuzzle().getProblem());
+            String[] input = controller.getUserInput();
 
-            //determine the reward type from puzzle
-            switch (player.getCurrentRoom().getRoomPuzzle().getPuzzleReward()) {
-                case "chest":
+            //If user input is "get instructions", begin puzzle loop
+            if (input[0].equals("get") && input[1].equals("instructions")) {
 
-                    //loop through puzzle attempts and adds armor to inventory when solved
-                    for (int i = 0; i == player.getCurrentRoom().getRoomPuzzle().getAttempts(); i--) {
 
-                        solution = player.getCurrentRoom().getRoomPuzzle().solve(controller.getUserInput().toString());
+                //print puzzle problem
+                view.printPuzzleProblem(puzzle.getProblem());
 
-                        if (solution == true) {
-                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getCorrectOutcome());
-                            player.addItemToInventory(item.getPuzzleItemReward());
-                            puzzleLoop = true;
-                            break;
-                        }
-                        else {
-                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getFailOutcome());
-                        }
-                    }
+                //determine the reward type from puzzle
+                switch (puzzle.getPuzzleReward()) {
+                    case "chest":
 
-                    break;
+                        //loop through puzzle attempts and adds armor to inventory when solved
+                        for (int i = 1; i <= puzzle.getAttempts(); i++) {
 
-                case "progress":
+                            String[] solutionInput = controller.getUserInput();
+                            solution = puzzle.solve(solutionInput[0]);
 
-                    //loop through puzzle attempts and progresses to next room when solved
-                    for (int i = 0; i == player.getCurrentRoom().getRoomPuzzle().getAttempts(); i--) {
+                            System.err.println(i);
+                            System.err.println(puzzle.getAttempts());
 
-                        solution = player.getCurrentRoom().getRoomPuzzle().solve(controller.getUserInput().toString());
 
-                        if (solution == true) {
-                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getCorrectOutcome());
-                            puzzleLoop = true;
-                            break;
-                        }
-                        else {
-                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getFailOutcome());
-                        }
-                    }
-                    break;
-
-                case "heal":
-
-                    //loop through puzzle attempts and gives player potions when solved
-                    for (int i = 0; i == player.getCurrentRoom().getRoomPuzzle().getAttempts(); i--) {
-
-                        solution = player.getCurrentRoom().getRoomPuzzle().solve(controller.getUserInput().toString());
-
-                        if (solution == true) {
-                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getCorrectOutcome());
-                            for (i = 0; i == 5; i++) {
-                                player.addItemToInventory(item.getPuzzleItemReward());
+                            if (solution) {
+                                view.printPuzzleSolveAttempt(puzzle.getCorrectOutcome());
+                                PuzzleReward rewardPuzzle = (PuzzleReward) puzzle;
+                                player.addItemToInventory(rewardPuzzle.getPuzzleItemReward());
+                                puzzleLoop = true;
+                                view.playerCheckInventory(player.checkInventory());
+                                break;
+                            } else {
+                                view.printPuzzleSolveAttempt(puzzle.getFailOutcome());
                             }
-                            puzzleLoop = true;
-                            break;
-                        }
-                        else {
-                            view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getFailOutcome());
-                        }
-                    }
 
-                default:
-                    System.out.println("Error: No reward type found");
+                        }
+
+                        break;
+
+                    case "progress":
+
+                        //loop through puzzle attempts and progresses to next room when solved
+                        for (int i = 0; i <= puzzle.getAttempts(); i--) {
+
+                            String[] solutionInput = controller.getUserInput();
+                            solution = puzzle.solve(solutionInput[0]);
+
+                            if (solution) {
+                                view.printPuzzleSolveAttempt(puzzle.getCorrectOutcome());
+                                puzzleLoop = true;
+                                break;
+                            } else {
+                                view.printPuzzleSolveAttempt(puzzle.getFailOutcome());
+                            }
+                        }
+                        break;
+
+                    case "heal":
+
+                        //loop through puzzle attempts and gives player potions when solved
+                        for (int i = 0; i <= puzzle.getAttempts(); i--) {
+
+                            String[] solutionInput = controller.getUserInput();
+                            solution = puzzle.solve(solutionInput[0]);
+
+                            if (solution) {
+                                view.printPuzzleSolveAttempt(puzzle.getCorrectOutcome());
+                                PuzzleReward rewardPuzzle = (PuzzleReward) puzzle;
+                                for (i = 0; i <= 5; i++) {
+                                    player.addItemToInventory(rewardPuzzle.getPuzzleItemReward());
+                                }
+                                puzzleLoop = true;
+                                break;
+                            } else {
+                                view.printPuzzleSolveAttempt(puzzle.getFailOutcome());
+                            }
+                        }
+
+                    default:
+                        System.out.println("Error: No reward type found");
+                }
+
+
             }
 
+            if (input[0].equals("hint")) {
 
-
+                view.printPuzzleHint(puzzle.getHint());
+            }
         }
-
-        if (controller.getUserInput().toString().equals("Hint for")) {
-
-            view.printPuzzleHint(player.getCurrentRoom().getRoomPuzzle().getHint());
-        }
-
 
     }
 
