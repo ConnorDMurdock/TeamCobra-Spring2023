@@ -155,7 +155,7 @@ public class Game {
 
                         if (solution == true) {
                             view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getCorrectOutcome());
-                            for (i = 0; i == 5, i++) {
+                            for (i = 0; i == 5; i++) {
                                 player.addItemToInventory(item.getPuzzleItemReward());
                             }
                             puzzleLoop = true;
