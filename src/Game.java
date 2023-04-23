@@ -92,7 +92,7 @@ public class Game {
     }
 
     //Puzzle loop - Albert Austin IV
-    public void enterPuzzleLoop(Player player) {
+    public void enterPuzzleLoop(Player player, PuzzleReward item) {
         //needed variables
         Controller controller = new Controller();
         View view = new View();
@@ -117,7 +117,7 @@ public class Game {
 
                         if (solution == true) {
                             view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getCorrectOutcome());
-                            //Legendary armor needs to be added to the player's inventory
+                            player.addItemToInventory(item.getPuzzleItemReward());
                             puzzleLoop = true;
                             break;
                         }
@@ -137,7 +137,6 @@ public class Game {
 
                         if (solution == true) {
                             view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getCorrectOutcome());
-                            //Progress to next room
                             puzzleLoop = true;
                             break;
                         }
@@ -156,7 +155,9 @@ public class Game {
 
                         if (solution == true) {
                             view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getCorrectOutcome());
-                            //Give player potions
+                            for (i = 0; i == 5, i++) {
+                                player.addItemToInventory(item.getPuzzleItemReward());
+                            }
                             puzzleLoop = true;
                             break;
                         }
