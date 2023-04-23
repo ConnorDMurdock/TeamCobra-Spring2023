@@ -68,7 +68,7 @@ public class Player extends Entity
     //each index is for one item. The ArrayList size is equal to the # of items in the inventory.
     public ArrayList<String> checkInventory() {
         ArrayList<String> inventoryLines = new ArrayList<>();
-        if (playerInventory.size() < 0){
+        if (playerInventory.size() > 0){
             for (Item item : playerInventory) {
                 inventoryLines.add("[" + item.getName() + ": " + item.getDescription() + "]");
             }
@@ -203,7 +203,6 @@ public class Player extends Entity
     public boolean move(Room room){
         boolean checkpoint = room.isCheckpoint;
         currentRoom = room;
-        room.enterRoomText();
         return checkpoint;
     }
 

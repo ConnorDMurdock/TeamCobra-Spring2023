@@ -105,7 +105,7 @@ public class Map implements Serializable {
                     PuzzleReward puzzleReward = new PuzzleReward(parts[1], parts[2], parts[4], parts[5], parts[6], parts[7], parts[8], Integer.parseInt(parts[9]), Boolean.parseBoolean(parts[10]), parts[11]);
                     String roomID = parts[3];
                     String itemLine = readFile.nextLine();
-                    String[] itemParts = line.split("~");
+                    String[] itemParts = itemLine.split("~");
                     Item item = null;
                     if (itemParts[0].equalsIgnoreCase("Equipment")){
                         item = new Equipment(itemParts[1], Integer.parseInt(itemParts[2]), itemParts[3], Integer.parseInt(itemParts[4]), Float.parseFloat(itemParts[5]));
@@ -161,7 +161,7 @@ public class Map implements Serializable {
 
     //Reads the Saves.dat file in the GameDataFiles folder
     //Returns a list of objects, where index 0 is the Player from the save, and index 1 is the Map from the save
-    public ArrayList<Object> loadGame() {
+    public ArrayList<Object> loadGame() throws Exception {
         ArrayList<Object> objectsFromFile = new ArrayList<>();
         try {
             ObjectInputStream reader = new ObjectInputStream(new FileInputStream("GameDataFiles/Save.dat"));
@@ -172,10 +172,21 @@ public class Map implements Serializable {
         } catch (EOFException eofe){
             //File loaded successfully
         } catch (Exception e){
-            System.err.println("Game could not be loaded");
-            e.printStackTrace();
+            throw new Exception("Game could not be loaded");
+            //System.err.println("Game could not be loaded");
+            //e.printStackTrace();
         }
         return objectsFromFile;
+    }
+
+    //Deletes the user's save file in the case of a game over
+    public void deleteSave() {
+        try {
+            File file = new File("GameDataFiles/Save.dat");
+            file.delete();
+        } catch (Exception e) {
+            System.err.println("File could not be deleted");
+        }
     }
 
     //Returns the HashMap from this object

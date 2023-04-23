@@ -1,210 +1,305 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
+import java.util.Random;
 
 public class Game {
 
     public static void main(String[] args) {
-        Map map = new Map();
+        boolean donePlaying = false;
+        while (!donePlaying) {
+            Map map = new Map();
+            HashMap<String, Room> gameMap = map.getGameMap();
+            Player player = new Player(100, 2, "name", gameMap.get("F6"));
+            Game game = new Game();
+            //create initial save file
+            map.saveGame(map, player);
+            donePlaying = game.enterExploreLoop(map, player);
+        }
+        System.exit(0);
+    }
+
+
+    //Original Method by Muhammad Marenah
+    //Reworked by Connor Murdock
+
+    //Returns a boolean equal to whether the player is done playing or not.
+    public boolean enterExploreLoop(Map map, Player player) {
+        boolean donePlaying = false;
         HashMap<String, Room> gameMap = map.getGameMap();
-        Player player = new Player(100 , 10, "name", gameMap.get("F6"));
-        Game game = new Game();
+        Controller controller = new Controller();
+        View view = new View();
+        while (true) {
+            //Gets the user input while exploring
+            String[] input = controller.getUserInput();
 
-        game.enterPuzzleLoop(player);
-    }
-
-/*
-    // Muhammad Marenah
-
-    private Player player;
-    private Map map;
-    private boolean isRunning;
-    private boolean gameOver;
-
-    public Game(Player player, Map map) {
-        this.player = player;
-        this.map = map;
-        this.isRunning = true;
-        this.gameOver = false;
-    }
-
-
-    public void run() {
-        System.out.println("Welcome to the game, Madreign!");
-
-                Scanner scanner = new Scanner(System.in);
-
-        while (isRunning) {
-            Room currentRoom = player.getCurrentRoom();
-
-            // Print room description
-            System.out.println(currentRoom.getRoomDescription());
-
-            // Print available directions
-            System.out.println("Available directions: ");
-            String[] connections = currentRoom.getRoomConnections();
-            String[] directionText = currentRoom.getDirectionText();
-            for (int i = 0; i < connections.length; i++) {
-                System.out.println(directionText[i] + ": " + connections[i]);
-            }
-
-            // Prompt user for input
-            System.out.print("Enter direction or command: ");
-            String input = scanner.nextLine();
-
-            // Check for commands
-            if (input.equalsIgnoreCase("inventory")) {
-                player.checkInventory();
-            } else if (input.equalsIgnoreCase("quit")) {
-                isRunning = false;
-            } else {
-                // Try to move to new room
-                int direction = parseDirection(input);
-                if (direction != -1) {
-                    String roomID = connections[direction];
-                    Room newRoom = map.getRoomByID(roomID);
-                    if (newRoom != null) {
-                        player.setCurrentRoom(newRoom);
-                    } else {
-                        System.out.println("There is no room in that direction!");
-                    }
-                } else {
-                    System.out.println("Invalid direction or command!");
+            //==MOVE COMMAND==
+            //Checks if the input is equal to a cardinal direction (player attempts to move)
+            if (input[0].equals("North") || input[0].equals("South")
+            || input[0].equals("East") || input[0].equals("West")) {
+                String[] connections = player.getConnectionInDirection(input[0]);
+                //If connections[0] (the connected roomID) equals 0, then there is no connection in that direction and display blocked connection text
+                if (connections[0].equalsIgnoreCase("0")) {
+                    view.genericPrint(connections[1]);
+                }
+                //Otherwise, move the player into the new room and display the connection text
+                else {
+                    player.move(gameMap.get(connections[0]));
+                    view.genericPrint(connections[1]);
                 }
             }
 
-            // Check if game over
-            if (player.getHitPoints() <= 0 || gameOver) {
-                isRunning = false;
-                System.out.println("Game over!");
+            //==STATUS COMMAND==
+            //Shows the user the player's current status
+            else if (input[0].equalsIgnoreCase("Status")) {
+                view.playerStatus(player.checkStatus());
+            }
+
+            //==ADD ITEM COMMAND==
+            //Allows the player to pickup items from the room if they exist
+            else if (input[0].equalsIgnoreCase("Add")) {
+                String itemName = recombineName(input);
+
+                //Make sure the player's inventory is not full first
+                if (!player.isInventoryFull()) {
+                    //Try to get the item from the room, and add it to the player's inventory
+                    try{
+                        Item item = player.getCurrentRoom().removeItemFromRoom(itemName);
+                        if (item != null) {
+                            player.addItemToInventory(item);
+                            view.playerItemPickup(itemName);
+                        }
+                    } catch (Exception e) {
+                        view.errorPrint("That item doesn't exist in this room!");
+                    }
+                }
+                else {
+                    view.errorPrint("Your inventory is full!");
+                }
+            }
+
+            //==REMOVE ITEM COMMAND==
+            //Drops the item from the player's inventory into the room inventory
+            else if (input[0].equalsIgnoreCase("Remove")) {
+                String itemName = recombineName(input);
+
+                //Try to get the item from the player, and add it to the room's inventory
+                try{
+                    Item item = player.removeItemFromInventory(itemName);
+                    if (item != null) {
+                        player.getCurrentRoom().addItemtoRoom(item);
+                        view.playerItemDrop(itemName);
+                    }
+                } catch (Exception e) {
+                    view.errorPrint("You don't have that item!");
+                }
+            }
+
+            //==EQUIP ITEM COMMAND==
+            //Equips the item to the player from their inventory
+            else if (input[0].equalsIgnoreCase("Equip")) {
+                String itemName = recombineName(input);
+                player.equipItem(itemName);
+            }
+
+            //==UNEQUIP ITEM COMMAND==
+            //Unequips the item from the player and places it in their inventory
+            else if (input[0].equalsIgnoreCase("Unequip")) {
+                String itemName = recombineName(input);
+                player.unequipItem(itemName);
+            }
+
+            //==SCAN ROOM COMMAND==
+            //Allows the user to scan the room and see any items, puzzles, or monsters in this room.
+            else if (input[0].equalsIgnoreCase("Scan")) {
+                if (input.length > 1) {
+                    if (input[1].equalsIgnoreCase("Room")) {
+                        player.getCurrentRoom().scanRoom();
+                    }
+                }
+                else {
+                    view.commandError();
+                }
+            }
+
+            //==CHECK INVENTORY COMMAND==
+            //Allows the user to view the player's inventory
+            else if (input[0].equalsIgnoreCase("Inventory")) {
+                view.playerCheckInventory(player.checkInventory());
+            }
+
+            //==FIGHT MONSTER COMMAND==
+            //Starts combat between the player and the specified monster
+            else if (input[0].equalsIgnoreCase("Fight")) {
+                String monsterName = recombineName(input);
+                try {
+                    //Start combat with the specified monster if it exists in this room
+                    Monster monster = player.getCurrentRoom().getMonsterByName(monsterName);
+                    boolean playerDied = initiateCombat(player, monster);
+                    if (playerDied) {
+                        //Try to load the last save. If no save found, restart the game
+                        try {
+                            ArrayList<Object> loadData = map.loadGame();
+                            player = (Player)loadData.get(0);
+                            map = (Map)loadData.get(1);
+                        } catch (Exception e) {
+                            //user is not done playing, restart
+                            //return false;
+                        }
+                        //If save file found, make the player lose a life.
+                        //If remaining lives is 0, give the user a game over.
+
+                        boolean gameOver = player.loseLife();
+                        if (gameOver) {
+                            view.gameOver();
+                            //Ask the user if they'd like to restart or quit the game
+                            while (true) {
+                                String[] gameOverInput = controller.getUserInput();
+                                if (gameOverInput[0].equalsIgnoreCase("Quit")) {
+                                    //user is done playing, quit game
+                                    return true;
+                                }
+                                else if (gameOverInput[0].equalsIgnoreCase("Restart")) {
+                                    map.deleteSave();
+                                    //user is not done playing, restart
+                                    return false;
+                                }
+                                else {
+                                    view.commandError();
+                                }
+                            }
+                        } else {
+                            //Save the game with the new life count of the player
+                            map.saveGame(map, player);
+                        }
+                    }
+                } catch (Exception e) {
+                    view.errorPrint("That monster is not in this room.");
+                }
+            }
+
+            //==START PUZZLE COMMAND==
+            //Starts the puzzle loop when the user interacts with the puzzle
+            else if (input[0].equalsIgnoreCase("Get")) {
+                if (input.length == 2) {
+                    if (input[1].equalsIgnoreCase("Instructions")) {
+                        if (player.getCurrentRoom().getRoomPuzzle() != null) {
+                            boolean removePuzzle = enterPuzzleLoop(player);
+                            //Remove the puzzle if successfully solved or attempts remaining = 0
+                            if (removePuzzle) {
+                                player.getCurrentRoom().setRoomPuzzle(null);
+                            }
+                        } else {
+                            view.errorPrint("There is no puzzle in this room");
+                        }
+                    }
+                }
+            }
+
+            //==CONSUME POTION COMMAND==
+            //Uses a potion from the player's inventory to heal them, if they have any potions
+            else if (input[0].equalsIgnoreCase("Consume")){
+                if (input.length == 2){
+                    if (input[1].equalsIgnoreCase("Potion")){
+                        Consumable potion = player.getConsumable();
+                        if (potion != null){
+                            player.heal(potion);
+                        }
+                        else {
+                            view.errorPrint("You don't have any potions!");
+                        }
+                    }
+                }
+                else {
+                    view.commandError();
+                }
+            }
+
+            //==COMMAND NOT RECOGNIZED==
+            //Print an error to the user if the command is unrecognized
+            else {
+                view.commandError();
             }
         }
-
-        scanner.close();
     }
 
-    private int parseDirection(String input) {
-        int direction = -1;
-        switch (input.toLowerCase()) {
-            case "north":
-                direction = 0;
-                break;
-            case "east":
-                direction = 1;
-                break;
-            case "south":
-                direction = 2;
-                break;
-            case "west":
-                direction = 3;
-                break;
+    private String recombineName(String[] input) {
+        String itemName = "";
+        //Recombines the input back into one string, placing a space after each index
+        for (int i = 1; i < input.length; i++) {
+            itemName = itemName + input[i] + " ";
         }
-        return direction;
+        //removes the extra space from the end of the itemName
+        itemName = itemName.strip();
+        return itemName;
     }
-    */
 
     //Puzzle loop - Albert Austin IV
-    public void enterPuzzleLoop(Player player) {
+    //Modified by Connor Murdock
+
+    //Returns whether this puzzle should be removed from the room or not
+    public boolean enterPuzzleLoop(Player player) {
         //needed variables
         Controller controller = new Controller();
         View view = new View();
-        Boolean puzzleLoop = true;
         Boolean solution;
         Puzzle puzzle = player.getCurrentRoom().getRoomPuzzle();
 
-        while (puzzleLoop){
+        //print puzzle problem
+        view.printPuzzleProblem(puzzle.getProblem());
 
-            String[] input = controller.getUserInput();
+        //User can attempt to solve the puzzle until they run out of attempts
+        for (int i = 1; i <= puzzle.getAttempts(); i++) {
+            String[] solutionInput = controller.getUserInput();
+            solution = puzzle.solve(solutionInput[0]);
 
-            //If user input is "get instructions", begin puzzle loop
-            if (input[0].equals("get") && input[1].equals("instructions")) {
-
-
-                //print puzzle problem
-                view.printPuzzleProblem(puzzle.getProblem());
-
-                //determine the reward type from puzzle
+            if (solutionInput[0].equalsIgnoreCase("Hint")) {
+                view.printPuzzleHint(puzzle.getHint());
+                i--;
+            } else {
                 switch (puzzle.getPuzzleReward()) {
                     case "chest":
-
-                        //loop through puzzle attempts and adds armor to inventory when solved
-                        for (int i = 1; i <= puzzle.getAttempts(); i++) {
-
-                            String[] solutionInput = controller.getUserInput();
-                            solution = puzzle.solve(solutionInput[0]);
-
-                            System.err.println(i);
-                            System.err.println(puzzle.getAttempts());
-
-
-                            if (solution) {
-                                view.printPuzzleSolveAttempt(puzzle.getCorrectOutcome());
-                                PuzzleReward rewardPuzzle = (PuzzleReward) puzzle;
-                                player.addItemToInventory(rewardPuzzle.getPuzzleItemReward());
-                                puzzleLoop = true;
-                                view.playerCheckInventory(player.checkInventory());
-                                break;
+                        if (solution) {
+                            view.printPuzzleSolveAttempt(puzzle.getCorrectOutcome());
+                            PuzzleReward reward = (PuzzleReward) puzzle;
+                            if (!player.isInventoryFull()) {
+                                player.addItemToInventory(reward.getPuzzleItemReward());
+                                view.playerItemPickup(reward.getPuzzleItemReward().getName());
                             } else {
-                                view.printPuzzleSolveAttempt(puzzle.getFailOutcome());
+                                player.getCurrentRoom().addItemtoRoom(reward.getPuzzleItemReward());
+                                view.errorPrint("Inventory full! You leave the item in the room for now");
                             }
-
+                            return true;
                         }
-
-                        break;
-
-                    case "progress":
-
-                        //loop through puzzle attempts and progresses to next room when solved
-                        for (int i = 0; i <= puzzle.getAttempts(); i--) {
-
-                            String[] solutionInput = controller.getUserInput();
-                            solution = puzzle.solve(solutionInput[0]);
-
-                            if (solution) {
-                                view.printPuzzleSolveAttempt(puzzle.getCorrectOutcome());
-                                puzzleLoop = true;
-                                break;
-                            } else {
-                                view.printPuzzleSolveAttempt(puzzle.getFailOutcome());
-                            }
+                    case "progression":
+                        if (solution) {
+                            view.printPuzzleSolveAttempt(puzzle.getCorrectOutcome());
+                            return true;
+                        } else {
+                            view.printPuzzleSolveAttempt(puzzle.getFailOutcome());
                         }
-                        break;
-
                     case "heal":
-
-                        //loop through puzzle attempts and gives player potions when solved
-                        for (int i = 0; i <= puzzle.getAttempts(); i--) {
-
-                            String[] solutionInput = controller.getUserInput();
-                            solution = puzzle.solve(solutionInput[0]);
-
-                            if (solution) {
-                                view.printPuzzleSolveAttempt(puzzle.getCorrectOutcome());
-                                PuzzleReward rewardPuzzle = (PuzzleReward) puzzle;
-                                for (i = 0; i <= 5; i++) {
-                                    player.addItemToInventory(rewardPuzzle.getPuzzleItemReward());
+                        if (solution) {
+                            view.printPuzzleSolveAttempt(puzzle.getCorrectOutcome());
+                            PuzzleReward reward = (PuzzleReward) puzzle;
+                            for (i = 0; i <= 5; i++) {
+                                if (!player.isInventoryFull()) {
+                                    player.addItemToInventory(reward.getPuzzleItemReward());
+                                    view.playerItemPickup(reward.getPuzzleItemReward().getName());
+                                } else {
+                                    player.getCurrentRoom().addItemtoRoom(reward.getPuzzleItemReward());
+                                    view.errorPrint("Inventory full! You leave the item in the room for now");
                                 }
-                                puzzleLoop = true;
-                                break;
-                            } else {
-                                view.printPuzzleSolveAttempt(puzzle.getFailOutcome());
                             }
+                            return true;
                         }
-
-                    default:
-                        System.out.println("Error: No reward type found");
                 }
-
-
-            }
-
-            if (input[0].equals("hint")) {
-
-                view.printPuzzleHint(puzzle.getHint());
             }
         }
-
+        //User runs out of attempts. Reward from puzzle is lost for this save
+        view.errorPrint("You have no more attempts at this puzzle");
+        return true;
     }
+
 
     /* Function by: Connor Murdock
      * Starts combat between two entities (generally the player and a monster)
@@ -259,7 +354,13 @@ public class Game {
                 //Player dodges the monster's next attack
                 else if (input[0].equalsIgnoreCase("Dodge")) {
                     view.playerDodgePrepare();
-                    playerDodged = true;
+                    //25% chance to dodge the attack successfully
+                    Random random = new Random();
+                    int num = random.nextInt(4);
+                    System.out.println(num);
+                    if (num == 1) {
+                        playerDodged = true;
+                    }
                     validInput = true;
                 }
                 //Player runs from the encounter
@@ -270,9 +371,9 @@ public class Game {
                 }
                 //Player uses a consumable to refill their health
                 //Only uses the player's turn if they successfully use a potion
-                else if (input[0].equalsIgnoreCase("Use")){
-                    if (input.length == 3){
-                        if (input[1].equalsIgnoreCase("Health") && input[2].equalsIgnoreCase("Potion")){
+                else if (input[0].equalsIgnoreCase("Consume")){
+                    if (input.length == 2){
+                        if (input[1].equalsIgnoreCase("Potion")){
                             Consumable potion = player.getConsumable();
                             if (potion != null){
                                 player.heal(potion);
@@ -284,7 +385,7 @@ public class Game {
                         }
                     }
                     else {
-                        view.errorPrint("Unrecognized command");
+                        view.commandError();
                     }
                 }
                 //Prints the player's status. Does not take the player's turn
@@ -296,7 +397,7 @@ public class Game {
                     view.combatHelp();
                 }
                 else {
-                    view.errorPrint("Unrecognized command");
+                    view.commandError();
                 }
             }
 
