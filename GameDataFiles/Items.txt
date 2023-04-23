@@ -21,9 +21,6 @@ Equipment_Buster Sword of Beginnings_8_D10_A huge, unwieldy, 104 pound sword tha
 Equipment_Dual Pistols High Guard_9_D12_Who needs accuracy when you've got quantity?_4_1
 Equipment_Magic Staff of Fire_10_D8_This magical artifact spews forth a torrent of flames to engulf your foes in a blazing inferno._4_3
 Equipment_Magic Staff of Water_11_C14_A staff used to summon a deluge of rushing waves to sweep away any enemies before you._4_2
-Equipment_Reign Ender Armor Legs_12_F6_Part of a legendary set of armor that can stand up to the might of the Mad King. It's time to gird your loins with this powerful leg armor._1_0.15
-Equipment_Reign Ender Armor Chest_13_D11_Part of a legendary set of armor that can stand up to the might of the Mad King. This hardened cuirass can absorb substantial damage._2_0.20
-Equipment_Reign Ender Armor Helmet_14_C18_Part of a legendary set of armor that can stand up to the might of the Mad King. Don this helmet to protect the mighty intellect that got you this far._3_0.15
 Equipment_Green Knight Armor Legs_15_F2_Some stylish green leggings that act as light armor._1_0.03
 Equipment_Green Knight Armor Chest_16_F3_This green chest piece offers some protection and flexibility._2_0.03
 Equipment_Green Knight Armor Helmet_17_F4_This green helmet feels quite comfortable when worn._3_0.03

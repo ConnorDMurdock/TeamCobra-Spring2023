@@ -18,16 +18,16 @@ public class Player extends Entity
     private ArrayList<Item> playerInventory;
 
     //The player's equipped items. The player has three spots for equipment: helmet, chest plate, and leggings.
-    //index 0 = leggings, index 1 = chest plate, index 2 = helmet, index 3 = shield
+    //index 0 = leggings, index 1 = chest plate, index 2 = helmet, index 3 = weapon, index 4 = shield
     private Equipment[] playerEquipment;
 
     //The player's equipped weapon. The player can only equip one weapon at a time.
-    private UseItem playerWeapon;
+    private Equipment playerWeapon;
 
     /* Constructor. The default values for the player are:
      * remaining lives = 3
      * damage reduction = 1
-     * equipment slots = 4
+     * equipment slots = 5 (index 0 is unused)
      * no weapon equipped
      */
     public Player(int hitPoints, int damageDealt, String name, Room currentRoom) {
@@ -35,7 +35,7 @@ public class Player extends Entity
         this.remainingLives = 3;
         this.percentOfDamageTaken = 1;
         this.playerInventory = new ArrayList<>();
-        this.playerEquipment = new Equipment[4];
+        this.playerEquipment = new Equipment[6];
         this.playerWeapon = null;
     }
 
@@ -119,7 +119,7 @@ public class Player extends Entity
                 int equipmentSlot = equipment.getEquipmentSlot();
                 if (playerEquipment[equipmentSlot] == null) {
                     playerEquipment[equipmentSlot] = equipment;
-                    percentOfDamageTaken -= equipment.getDamageReduction();
+                    percentOfDamageTaken -= equipment.getItemStat();
                     playerInventory.remove(equipment);
                     System.out.println("equipped the " + equipment.getName());
                 }
@@ -143,7 +143,7 @@ public class Player extends Entity
                     else {
                         addItemToInventory(e);
                         playerEquipment[e.getEquipmentSlot()] = null;
-                        percentOfDamageTaken += e.getDamageReduction();
+                        percentOfDamageTaken += e.getItemStat();
                         System.out.println("Unequipped the " + e.getName());
                     }
                 }

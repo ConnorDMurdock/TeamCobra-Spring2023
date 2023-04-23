@@ -82,14 +82,9 @@ public class Map implements Serializable {
                     Consumable consumable = new Consumable(parts[1], Integer.parseInt(parts[2]), parts[4], Integer.parseInt(parts[5]));
                     gameMap.get(parts[3]).addItemtoRoom(consumable);
                 }
-                else if (parts[0].equalsIgnoreCase("UseItem")){
-                    UseItem useItem = new UseItem(parts[1], Integer.parseInt(parts[2]), parts[4], Integer.parseInt(parts[5]), Integer.parseInt(parts[6]));
-                    gameMap.get(parts[3]).addItemtoRoom(useItem);
-                }
                 else if (parts[0].equalsIgnoreCase("Equipment")){
-                    Equipment equipment = new Equipment(parts[1], Integer.parseInt(parts[2]), parts[4], Integer.parseInt(parts[5]), Integer.parseInt(parts[6]));
+                    Equipment equipment = new Equipment(parts[1], Integer.parseInt(parts[2]), parts[4], Integer.parseInt(parts[5]), Float.parseFloat(parts[6]));
                     gameMap.get(parts[3]).addItemtoRoom(equipment);
-
                 }
             }
         } catch (Exception e){
@@ -106,8 +101,25 @@ public class Map implements Serializable {
             while(readFile.hasNextLine()){
                 String line = readFile.nextLine();
                 String[] parts = line.split("~");
-                Puzzle puzzle = new Puzzle(parts[0], parts[1], parts[3], parts[4], parts[5], parts[6], parts[7], Integer.parseInt(parts[8]), Boolean.parseBoolean(parts[9]));
-                gameMap.get(parts[2]).setRoomPuzzle(puzzle);
+                if (parts[0].equalsIgnoreCase("item")) {
+                    PuzzleReward puzzleReward = new PuzzleReward(parts[1], parts[2], parts[4], parts[5], parts[6], parts[7], parts[8], Integer.parseInt(parts[9]), Boolean.parseBoolean(parts[10]), parts[11]);
+                    String roomID = parts[3];
+                    String itemLine = readFile.nextLine();
+                    String[] itemParts = line.split("~");
+                    Item item = null;
+                    if (itemParts[0].equalsIgnoreCase("Equipment")){
+                        item = new Equipment(itemParts[1], Integer.parseInt(itemParts[2]), itemParts[3], Integer.parseInt(itemParts[4]), Float.parseFloat(itemParts[5]));
+                    }
+                    else if (itemParts[0].equalsIgnoreCase("Consumable")){
+                        item = new Consumable(itemParts[1], Integer.parseInt(itemParts[2]), itemParts[3], Integer.parseInt(itemParts[4]));
+                    }
+                    puzzleReward.setPuzzleItemReward(item);
+                    gameMap.get(roomID).setRoomPuzzle(puzzleReward);
+                }
+                else if (parts[0].equalsIgnoreCase("path")){
+                    Puzzle puzzle = new Puzzle(parts[1], parts[2], parts[4], parts[5], parts[6], parts[7], parts[8], Integer.parseInt(parts[9]), Boolean.parseBoolean(parts[10]), parts[11]);
+                    gameMap.get(parts[3]).setRoomPuzzle(puzzle);
+                }
             }
         } catch (Exception e){
             e.printStackTrace();
