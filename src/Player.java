@@ -42,12 +42,7 @@ public class Player extends Entity
     //Adds a given item to the player's inventory.
     //If the inventory already has 20 items in it, do not add the item because the inventory is full.
     public void addItemToInventory(Item item) {
-        if (playerInventory.size() < 20){
-            playerInventory.add(item);
-        }
-        else {
-            System.err.println("Your inventory is full!");
-        }
+        playerInventory.add(item);
     }
 
     //returns true if the player's inventory is full (20 items or more).
@@ -58,14 +53,15 @@ public class Player extends Entity
 
     //Takes in a String of the item's name given by the user, checks the player's inventory for that item, then returns that item if it exists.
     public Item removeItemFromInventory(String itemName) {
-        Item item = null;
+        Item item;
         for (Item value : playerInventory) {
             if (value.getName().equalsIgnoreCase(itemName)) {
                 item = value;
                 playerInventory.remove(value);
+                return item;
             }
         }
-        return item;
+        return null;
     }
 
     //Returns an ArrayList of Strings, where each index is [item name: item description].
@@ -88,17 +84,27 @@ public class Player extends Entity
         return gameOver;
     }
 
-    //----Possibly change this function based on the useConsumable() function in Consumable
-    public void heal(int healthRestored){
-        int newHitPoints = hitPoints + healthRestored;
-        if (newHitPoints > 100){
-            newHitPoints = 100;
+    //Heals the player using the given consumable
+    //If the consumable's remaining HP is 0 after use, remove from inventory
+    public void heal(Consumable consumable){
+        hitPoints = consumable.useConsumable(hitPoints);
+        if (hitPoints > 100){
+            hitPoints = 100;
         }
-        this.hitPoints = newHitPoints;
+        if (consumable.getRemainingHP() <= 0){
+            removeItemFromInventory(consumable.getName());
+        }
     }
 
-    public void useItem(String typeOfUse) {
-
+    public Consumable getConsumable() {
+        Consumable consumable;
+        for (Item value : playerInventory) {
+            if (value.getName().equalsIgnoreCase("Health Potion")) {
+                consumable = (Consumable)value;
+                return consumable;
+            }
+        }
+        return null;
     }
 
     //Equips the item that the user specifies, as long as the player has the item in their inventory and there is not already an item equipped to that slot.
@@ -117,7 +123,13 @@ public class Player extends Entity
             try {
                 Equipment equipment = (Equipment) item;
                 int equipmentSlot = equipment.getEquipmentSlot();
-                if (playerEquipment[equipmentSlot] == null) {
+                if (equipmentSlot == 4 && playerEquipment[4] == null){
+                    playerEquipment[4] = equipment;
+                    damageDealt += equipment.getItemStat();
+                    playerInventory.remove(equipment);
+                    System.out.println("equipped the " + equipment.getName());
+                }
+                else if (playerEquipment[equipmentSlot] == null) {
                     playerEquipment[equipmentSlot] = equipment;
                     percentOfDamageTaken -= equipment.getItemStat();
                     playerInventory.remove(equipment);
@@ -143,7 +155,12 @@ public class Player extends Entity
                     else {
                         addItemToInventory(e);
                         playerEquipment[e.getEquipmentSlot()] = null;
-                        percentOfDamageTaken += e.getItemStat();
+                        if (e.getEquipmentSlot() == 4){
+                            damageDealt -= e.getItemStat();
+                        }
+                        else {
+                            percentOfDamageTaken += e.getItemStat();
+                        }
                         System.out.println("Unequipped the " + e.getName());
                     }
                 }

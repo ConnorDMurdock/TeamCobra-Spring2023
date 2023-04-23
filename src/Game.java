@@ -18,8 +18,9 @@ public class Game {
         this.gameOver = false;
     }
 
+
     public void run() {
-        System.out.println("Welcome to the game, Madreign!”);
+        System.out.println("Welcome to the game, Madreign!");
 
                 Scanner scanner = new Scanner(System.in);
 
@@ -31,7 +32,7 @@ public class Game {
 
             // Print available directions
             System.out.println("Available directions: ");
-            String[] connections = currentRoom.getConnections();
+            String[] connections = currentRoom.getRoomConnections();
             String[] directionText = currentRoom.getDirectionText();
             for (int i = 0; i < connections.length; i++) {
                 System.out.println(directionText[i] + ": " + connections[i]);
@@ -43,7 +44,7 @@ public class Game {
 
             // Check for commands
             if (input.equalsIgnoreCase("inventory")) {
-                player.printInventory();
+                player.checkInventory();
             } else if (input.equalsIgnoreCase("quit")) {
                 isRunning = false;
             } else {
@@ -155,7 +156,7 @@ public class Game {
 
                         if (solution == true) {
                             view.printPuzzleSolveAttempt(player.getCurrentRoom().getRoomPuzzle().getCorrectOutcome());
-                            for (i = 0; i == 5, i++) {
+                            for (i = 0; i == 5; i++) {
                                 player.addItemToInventory(item.getPuzzleItemReward());
                             }
                             puzzleLoop = true;
@@ -181,8 +182,6 @@ public class Game {
 
 
     }
-
-
 
     /* Function by: Connor Murdock
      * Starts combat between two entities (generally the player and a monster)
@@ -246,12 +245,24 @@ public class Game {
                     inCombat = false;
                     validInput = true;
                 }
-                //Player uses an item
+                //Player uses a consumable to refill their health
+                //Only uses the player's turn if they successfully use a potion
                 else if (input[0].equalsIgnoreCase("Use")){
-                    if (input[1].equalsIgnoreCase("health") && input[2].equalsIgnoreCase("Potion")){
-                        //player.heal(player.useItem(input));
+                    if (input.length == 3){
+                        if (input[1].equalsIgnoreCase("Health") && input[2].equalsIgnoreCase("Potion")){
+                            Consumable potion = player.getConsumable();
+                            if (potion != null){
+                                player.heal(potion);
+                                validInput = true;
+                            }
+                            else {
+                                view.errorPrint("You don't have any potions!");
+                            }
+                        }
                     }
-                    validInput = true;
+                    else {
+                        view.errorPrint("Unrecognized command");
+                    }
                 }
                 //Prints the player's status. Does not take the player's turn
                 else if (input[0].equalsIgnoreCase("Status")) {
@@ -260,6 +271,9 @@ public class Game {
                 //Prints the help menu to the user Does not take the player's turn
                 else if (input[0].equalsIgnoreCase("Help")) {
                     view.combatHelp();
+                }
+                else {
+                    view.errorPrint("Unrecognized command");
                 }
             }
 
