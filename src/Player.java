@@ -170,24 +170,48 @@ public class Player extends Entity
         }
     }
 
+    //Inspects the given item, if it exists in the player's inventory
+    //Format is as follows: ItemName - itemDescription - itemStat (defense, attack, or remainingHP)
+    public String inspectItem(String itemName) {
+        String itemInfo = "You don't have that item!";
+        for (int i = 0; i < playerInventory.size(); i++) {
+            if (playerInventory.get(i).getName().equalsIgnoreCase(itemName)) {
+                try {
+                    Equipment e = (Equipment)playerInventory.get(i);
+                    if (e.getEquipmentSlot() == 4) {
+                        itemInfo = e.getName() + " - " + e.getDescription() + " - " + "increases damage by " + e.getItemStat();
+                    }
+                    else {
+                        itemInfo = e.getName() + " - " + e.getDescription() + " - reduces damage taken by " + e.getItemStat() * 100 + "%";
+                    }
+                } catch (Exception e){}
+                try {
+                    Consumable c = (Consumable) playerInventory.get(i);
+                    itemInfo = c.getName() + " - " + c.getDescription() + " - HP remaining: " + c.getRemainingHP();
+                } catch (Exception e){}
+            }
+        }
+        return itemInfo;
+    }
+
     //Gets the room information based on the given direction.
     //If connection = 0, no room is in that direction.
     public String[] getConnectionInDirection(String direction){
         String[] connectedRoomInfo = new String[2];
         switch (direction) {
-            case "North" -> {
+            case "North", "north" -> {
                 connectedRoomInfo[0] = currentRoom.getRoomConnections()[0];
                 connectedRoomInfo[1] = currentRoom.getDirectionText()[0];
             }
-            case "South" -> {
+            case "South", "south" -> {
                 connectedRoomInfo[0] = currentRoom.getRoomConnections()[1];
                 connectedRoomInfo[1] = currentRoom.getDirectionText()[1];
             }
-            case "West" -> {
+            case "West", "west" -> {
                 connectedRoomInfo[0] = currentRoom.getRoomConnections()[2];
                 connectedRoomInfo[1] = currentRoom.getDirectionText()[2];
             }
-            case "East" -> {
+            case "East", "east" -> {
                 connectedRoomInfo[0] = currentRoom.getRoomConnections()[3];
                 connectedRoomInfo[1] = currentRoom.getDirectionText()[3];
             }

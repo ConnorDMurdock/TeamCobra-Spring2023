@@ -4,17 +4,41 @@ import java.util.Random;
 
 public class Game {
 
+    /* Main Method
+     * by: Connor Murdock
+     * This method creates necessary objects that the program needs and uses them to run the game
+     * The order of things goes as follows:
+     *      - introduction showed to the player; get player's name
+     *      - create the Map, Player, and Game objects
+     *      - Create the initial save game
+     *      - Start the game
+     * This will continue to loop whenever the player restarts the game after a game over.
+     */
     public static void main(String[] args) {
+        //Create necessary objects
         boolean donePlaying = false;
+        View view = new View();
+        Controller controller = new Controller();
+
         while (!donePlaying) {
+            //Display the introduction to the user and get their name
+            view.introductionPart1();
+            String[] input = controller.getUserInput();
+            view.introductionPart2(input[0]);
+
+            //Create the game objects
             Map map = new Map();
             HashMap<String, Room> gameMap = map.getGameMap();
-            Player player = new Player(100, 2, "name", gameMap.get("F6"));
+            Player player = new Player(100, 2, input[0], gameMap.get("F1"));
             Game game = new Game();
+
             //create initial save file
             map.saveGame(map, player);
+
+            //Begin playing
             donePlaying = game.enterExploreLoop(map, player);
         }
+        //If player is done playing, exit the program
         System.exit(0);
     }
 
@@ -34,17 +58,21 @@ public class Game {
 
             //==MOVE COMMAND==
             //Checks if the input is equal to a cardinal direction (player attempts to move)
-            if (input[0].equals("North") || input[0].equals("South")
-            || input[0].equals("East") || input[0].equals("West")) {
-                String[] connections = player.getConnectionInDirection(input[0]);
-                //If connections[0] (the connected roomID) equals 0, then there is no connection in that direction and display blocked connection text
-                if (connections[0].equalsIgnoreCase("0")) {
-                    view.genericPrint(connections[1]);
+            if (input[0].equalsIgnoreCase("Move")) {
+                if (input.length == 2){
+                    String[] connections = player.getConnectionInDirection(input[1]);
+                    //If connections[0] (the connected roomID) equals 0, then there is no connection in that direction and display blocked connection text
+                    if (connections[0].equalsIgnoreCase("0")) {
+                        view.genericPrint(connections[1]);
+                    }
+                    //Otherwise, move the player into the new room and display the connection text
+                    else {
+                        player.move(gameMap.get(connections[0]));
+                        view.genericPrint(connections[1]);
+                    }
                 }
-                //Otherwise, move the player into the new room and display the connection text
                 else {
-                    player.move(gameMap.get(connections[0]));
-                    view.genericPrint(connections[1]);
+                    view.commandError();
                 }
             }
 
@@ -106,6 +134,13 @@ public class Game {
             else if (input[0].equalsIgnoreCase("Unequip")) {
                 String itemName = recombineName(input);
                 player.unequipItem(itemName);
+            }
+
+            //==INSPECT ITEM COMMAND==
+            //Inspects the item if the player has it in their inventory
+            else if (input[0].equalsIgnoreCase("Inspect")) {
+                String itemName = recombineName(input);
+                view.genericPrint(player.inspectItem(itemName));
             }
 
             //==SCAN ROOM COMMAND==
@@ -214,6 +249,12 @@ public class Game {
                 }
             }
 
+            //==HELP MENU==
+            //Displays the help menu to the user
+            else if (input[0].equalsIgnoreCase("Help")) {
+                view.displayHelpMenu();
+            }
+
             //==COMMAND NOT RECOGNIZED==
             //Print an error to the user if the command is unrecognized
             else {
@@ -281,7 +322,7 @@ public class Game {
                         if (solution) {
                             view.printPuzzleSolveAttempt(puzzle.getCorrectOutcome());
                             PuzzleReward reward = (PuzzleReward) puzzle;
-                            for (i = 0; i <= 5; i++) {
+                            for (i = 1; i <= 5; i++) {
                                 if (!player.isInventoryFull()) {
                                     player.addItemToInventory(reward.getPuzzleItemReward());
                                     view.playerItemPickup(reward.getPuzzleItemReward().getName());
