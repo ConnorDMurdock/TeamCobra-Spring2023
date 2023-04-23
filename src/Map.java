@@ -59,7 +59,7 @@ public class Map implements Serializable {
                 }
 
                 //Create the room objects and populate them into the HashMap
-                Room room = new Room(roomData[0], roomData[1], Boolean.parseBoolean(roomData[2]), roomData[3], roomConnections, roomDirectionsText, roomData[6]);
+                Room room = new Room(roomData[0], roomData[1], Boolean.parseBoolean(roomData[2]), roomData[3], roomConnections, roomDirectionsText, roomData[9]);
                 gameMap.put(roomData[1], room);
             }
         } catch (Exception e){

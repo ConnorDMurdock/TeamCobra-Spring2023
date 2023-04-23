@@ -60,15 +60,37 @@ public class Game {
             //Checks if the input is equal to a cardinal direction (player attempts to move)
             if (input[0].equalsIgnoreCase("Move")) {
                 if (input.length == 2){
-                    String[] connections = player.getConnectionInDirection(input[1]);
-                    //If connections[0] (the connected roomID) equals 0, then there is no connection in that direction and display blocked connection text
-                    if (connections[0].equalsIgnoreCase("0")) {
-                        view.genericPrint(connections[1]);
-                    }
-                    //Otherwise, move the player into the new room and display the connection text
-                    else {
-                        player.move(gameMap.get(connections[0]));
-                        view.genericPrint(connections[1]);
+                    try {
+                        String[] connections = player.getConnectionInDirection(input[1]);
+                        //If connections[0] (the connected roomID) equals 0, then there is no connection in that direction and display blocked connection text
+                        if (connections[0].equalsIgnoreCase("0")) {
+                            view.genericPrint(connections[1]);
+                        }
+                        //Otherwise, move the player into the new room and display the connection text
+                        else {
+                            if (player.getCurrentRoom().getRoomPuzzle() != null) {
+                                if (player.getCurrentRoom().getRoomPuzzle().getPuzzleReward().equals("progression")) {
+                                    if (input[1].equalsIgnoreCase("North")) {
+                                        view.genericPrint(connections[1]);
+                                    }
+                                }
+                            }
+                            else {
+                                player.move(gameMap.get(connections[0]));
+                                view.genericPrint(connections[1]);
+                                //save the game if moving to a checkpoint room with no monsters
+                                if (gameMap.get(connections[0]).isCheckpoint()) {
+                                    if (gameMap.get(connections[0]).getMonstersList().size() > 0) {
+                                        view.errorPrint("This room is a checkpoint, but cannot be activated until there are no monsters in the room...");
+                                    } else {
+                                        view.genericPrint("Checkpoint reached!");
+                                        map.saveGame(map, player);
+                                    }
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        view.commandError();
                     }
                 }
                 else {
@@ -207,6 +229,12 @@ public class Game {
                             map.saveGame(map, player);
                         }
                     }
+                    //If the player just fought the king and won
+                    else {
+                        if (monsterName.equals("THE KING") && player.getCurrentRoom().getMonstersList().size() == 0) {
+                            System.exit(0);
+                        }
+                    }
                 } catch (Exception e) {
                     view.errorPrint("That monster is not in this room.");
                 }
@@ -218,10 +246,23 @@ public class Game {
                 if (input.length == 2) {
                     if (input[1].equalsIgnoreCase("Instructions")) {
                         if (player.getCurrentRoom().getRoomPuzzle() != null) {
-                            boolean removePuzzle = enterPuzzleLoop(player);
-                            //Remove the puzzle if successfully solved or attempts remaining = 0
-                            if (removePuzzle) {
-                                player.getCurrentRoom().setRoomPuzzle(null);
+                            //Only let the player attempt a chest puzzle if there are no enemies in the room (the boss has died)
+                            if (player.getCurrentRoom().getRoomPuzzle().getPuzzleReward().equalsIgnoreCase("chest")) {
+                                if (player.getCurrentRoom().getMonstersList().size() == 0) {
+                                    boolean removePuzzle = enterPuzzleLoop(player);
+                                    //Remove the puzzle if successfully solved or attempts remaining = 0
+                                    if (removePuzzle) {
+                                        player.getCurrentRoom().setRoomPuzzle(null);
+                                    }
+                                } else {
+                                    view.errorPrint("You must defeat the boss of this room first");
+                                }
+                            } else {
+                                boolean removePuzzle = enterPuzzleLoop(player);
+                                //Remove the puzzle if successfully solved or attempts remaining = 0
+                                if (removePuzzle) {
+                                    player.getCurrentRoom().setRoomPuzzle(null);
+                                }
                             }
                         } else {
                             view.errorPrint("There is no puzzle in this room");
@@ -314,6 +355,9 @@ public class Game {
                     case "progression":
                         if (solution) {
                             view.printPuzzleSolveAttempt(puzzle.getCorrectOutcome());
+                            String[] connections = player.getCurrentRoom().getDirectionText();
+                            connections[0] = player.getCurrentRoom().getPuzzleSolvedDirectionText();
+                            player.getCurrentRoom().setDirectionText(connections);
                             return true;
                         } else {
                             view.printPuzzleSolveAttempt(puzzle.getFailOutcome());
