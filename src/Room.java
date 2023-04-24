@@ -130,6 +130,15 @@ public class Room implements Serializable {
         return isCheckpoint;
     }
 
+    public Monster getMonsterByName(String monsterName) {
+        for (Monster monster : monstersList) {
+            if (monster.getName().equalsIgnoreCase(monsterName)) {
+                return monster;
+            }
+        }
+        return null;
+    }
+
 
     public void scanRoom(){
         ArrayList<String> rMonsterNames = new ArrayList<>();

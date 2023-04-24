@@ -14,20 +14,22 @@ public class Consumable extends Item implements Serializable {
         this.remainingHP = potionHP;
     }
 
-   /* public void useConsumable(playerHP){
-        int h = playerHP;
-        if(h < 10){
-            playerHP = playerHP + h;
-            return playerHP;
+   public int useConsumable(int playerHP){
+        int difference = 100 - playerHP;
+        if (difference < remainingHP){
+            remainingHP = remainingHP - difference;
+            playerHP = playerHP + difference;
         }
-        else{
-            int partialHealthPotion;
-            int ht = (100 - playerHP);
-            partialHealthPotion = 10-ht;
-            playerHP = 100;
-            return playerHP;
+        else {
+            playerHP = playerHP + remainingHP;
+            remainingHP = 0;
         }
-    }*/
+        return playerHP;
+    }
+
+    public int getRemainingHP(){
+        return remainingHP;
+    }
 
 //potential means of using health potions.
 }

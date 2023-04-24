@@ -2,6 +2,11 @@ import java.util.ArrayList;
 
 public class View {
 
+    /* Game Functions
+     * by Connor Murdock
+     * prints various gameplay required functions to the user
+     */
+
     //Prints any text given as a normal message
     public void genericPrint(String text){
         System.out.println(text);
@@ -12,12 +17,22 @@ public class View {
         System.err.println(text);
     }
 
-/**
-* displays items, puzzles and monsters in the room
-*/
+    //Prints the statement in red text. Used when an unknown command is passed in from the user
+    public void commandError() {
+        System.err.println("Unrecognized command");
+    }
 
-//Duaa Fatima
-    public void printScanroom(Room room){
+    public void gameOver() {
+        System.err.println("This world will never know salvation...");
+        System.out.println("Would you like to restart or quit the game?");
+    }
+
+    /**
+    * displays items, puzzles and monsters in the room
+    */
+
+    //Duaa Fatima
+    public void printScanRoom(Room room){
         room.scanRoom();
     }
     public void printRoomScan(Room room){
@@ -52,6 +67,14 @@ public class View {
         }
     }
 
+    public void playerItemPickup(String itemName) {
+        System.out.println(itemName + " has been added to inventory");
+    }
+
+    public void playerItemDrop(String itemName) {
+        System.out.println(itemName + " has been removed from inventory");
+    }
+
     //==In-combat commands==
     public void damageTaken(String entityName, int damage) {
         System.out.println(entityName + " took " + damage + " damage!");
@@ -84,8 +107,8 @@ public class View {
     public void combatHelp() {
         System.out.println("==Combat Commands==");
         System.out.println("Attack: attack the monster");
-        System.out.println("Use [Item Name]: use the specified item");
-        System.out.println("Dodge: dodge the monster's next attack");
+        System.out.println("Consume Potion: Use a health potion to heal");
+        System.out.println("Dodge: dodge the monster's next attack, 25% success chance");
         System.out.println("Run: escape from combat");
         System.out.println("Status: see your current status");
         System.out.println("Help: see this menu");
@@ -145,6 +168,8 @@ public class View {
         System.out.println("Equip [item name] - Equip the item to the player from the player's inventory");
         System.out.println("Unequip [item name] - Unequip the item from the player and place it into the player's inventory");
         System.out.println("Status - Check player's health points and status");
+        System.out.println("Fight [monster name] - Starts combat with the specified monster");
+        System.out.println("Get Instructions - Get instructions for the room's puzzle and attempt to solve it");
         System.out.println("-------");
         System.out.println("Player Lives:");
         System.out.println("The player has 3 lives for each play through of the game.");

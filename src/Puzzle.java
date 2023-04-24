@@ -61,14 +61,7 @@ public class Puzzle implements Serializable {
 
     //Method to solve puzzle
     public boolean solve(String solution) {
-        if (this.solution.equals(solution)) {
-            System.out.println(correctOutcome);
-            return true;
-        }
-        else
-            System.out.println(failOutcome);
-        return false;
-
+        return this.solution.equalsIgnoreCase(solution);
     }
 }
 
