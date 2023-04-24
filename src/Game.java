@@ -62,7 +62,6 @@ public class Game {
                 if (input.length == 2){
                     try {
                         String[] connections = player.getConnectionInDirection(input[1]);
-                        System.out.println(connections[0]);
                         //If connections[0] (the connected roomID) equals 0, then there is no connection in that direction and display blocked connection text
                         if (connections[0].equalsIgnoreCase("0")) {
                             view.genericPrint(connections[1]);
