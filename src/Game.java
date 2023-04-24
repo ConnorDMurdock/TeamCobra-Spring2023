@@ -29,7 +29,7 @@ public class Game {
             //Create the game objects
             Map map = new Map();
             HashMap<String, Room> gameMap = map.getGameMap();
-            Player player = new Player(100, 100, input[0], gameMap.get("F1"));
+            Player player = new Player(100, 2, input[0], gameMap.get("F1"));
             Game game = new Game();
 
             //create initial save file
