@@ -29,7 +29,7 @@ public class Game {
             //Create the game objects
             Map map = new Map();
             HashMap<String, Room> gameMap = map.getGameMap();
-            Player player = new Player(100, 2, input[0], gameMap.get("F1"));
+            Player player = new Player(100, 100, input[0], gameMap.get("F1"));
             Game game = new Game();
 
             //create initial save file
@@ -62,17 +62,16 @@ public class Game {
                 if (input.length == 2){
                     try {
                         String[] connections = player.getConnectionInDirection(input[1]);
+                        System.out.println(connections[0]);
                         //If connections[0] (the connected roomID) equals 0, then there is no connection in that direction and display blocked connection text
                         if (connections[0].equalsIgnoreCase("0")) {
                             view.genericPrint(connections[1]);
                         }
                         //Otherwise, move the player into the new room and display the connection text
                         else {
-                            if (player.getCurrentRoom().getRoomPuzzle() != null) {
-                                if (player.getCurrentRoom().getRoomPuzzle().getPuzzleReward().equals("progression")) {
-                                    if (input[1].equalsIgnoreCase("North")) {
-                                        view.genericPrint(connections[1]);
-                                    }
+                            if (player.getCurrentRoom().getRoomPuzzle() != null && player.getCurrentRoom().getRoomPuzzle().getPuzzleReward().equals("progression")) {
+                                if (input[1].equalsIgnoreCase("North")) {
+                                    view.genericPrint(connections[1]);
                                 }
                             }
                             else {
@@ -231,7 +230,7 @@ public class Game {
                     }
                     //If the player just fought the king and won
                     else {
-                        if (monsterName.equals("THE KING") && player.getCurrentRoom().getMonstersList().size() == 0) {
+                        if (monsterName.equalsIgnoreCase("THE KING") && player.getCurrentRoom().getMonstersList().size() == 0) {
                             System.exit(0);
                         }
                     }
